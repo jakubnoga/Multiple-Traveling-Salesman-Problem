@@ -3,6 +3,7 @@ package com.jurnog.mtsp;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 import com.jurnog.mtsp.beealgorithm.Bee;
@@ -30,9 +31,11 @@ public class MTSPProblem {
 	
 	private void parseProblemData(Scanner scanner) throws InvalidInputException{
 		int dim = 0;
+		scanner.useLocale(Locale.UK);
 		
 		if(scanner.hasNextInt()){
 			dim = scanner.nextInt();
+//			System.out.println(dim);
 		}
 		
 		if(dim >= 2){
@@ -40,14 +43,23 @@ public class MTSPProblem {
 			for(int currentRow = 0; currentRow < dim; currentRow++){
 				costMatrix.add(new ArrayList<Double>(dim));
 				for(int currentColumn = 0; currentColumn < dim; currentColumn++){
+//					System.out.println("Row: "+currentRow+" Column: "+currentColumn);
 					if(scanner.hasNextDouble()){
-						costMatrix.get(currentRow).set(currentColumn, scanner.nextDouble());
+						double value = scanner.nextDouble();
+						costMatrix.get(currentRow).add(value);
+//						System.out.println(value);
 					} else {
-						throw new InvalidInputException();
+						throw new InvalidInputException("Unexpected end of costs matrix");
 					}
 				}
 			}
-		}		
+		}
+		
+		if(scanner.hasNextDouble()){
+			salesmanDispatchCost = scanner.nextDouble();
+		} else {
+			throw new InvalidInputException("Could not find salesman dispatch cost");
+		}
 	}
 
 	public void loadProblemDataFromJSON(String jsonData){
