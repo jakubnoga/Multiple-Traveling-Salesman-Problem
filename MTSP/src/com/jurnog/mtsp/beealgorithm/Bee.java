@@ -1,32 +1,15 @@
 package com.jurnog.mtsp.beealgorithm;
 
-import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.Callable;
 
-import com.jurnog.mtsp.RestrictionsChecker;
-import com.jurnog.mtsp.ValueChecker;
-
-public class Bee implements Runnable, RestrictionsChecker, ValueChecker{
-	private int dimesions;
+public abstract class Bee implements Callable<double[][]>{
+	Random rand;
 	
-	private ArrayList<ArrayList<Double>> trasitionMatrix;
-	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	protected int getRandomInRange(int min, int max){
+		int num;		
+		num = rand.nextInt((max-min) + 1) + min;		
+		return num;
 	}
 
-	@Override
-	public double checkValue() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean checkRestrictions() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	
 }

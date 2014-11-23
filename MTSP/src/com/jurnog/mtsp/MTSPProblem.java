@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
-import com.jurnog.mtsp.beealgorithm.Bee;
+import com.jurnog.mtsp.beealgorithm.ScoutBee;
 import com.jurnog.mtsp.utilities.InvalidInputException;
 
 public class MTSPProblem {
