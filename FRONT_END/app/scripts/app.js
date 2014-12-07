@@ -12,6 +12,10 @@ angular
     'ui.router'
   ])
 
+.constant('serverURL', {
+    'url': 'http://localhost'
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 $urlRouterProvider.otherwise('/main');
 $stateProvider

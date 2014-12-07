@@ -1,12 +1,14 @@
 'use strict';
 angular.module('MTSPApp').controller('MainCtrl', function (
 	uiGmapGoogleMapApi,
-	$scope
+	$scope,
+	MainService
 	) {
 
 	var ctrl = this;
 	ctrl.drawingManagerControl = {};
 	ctrl.markers=[];
+	var id=1;
 
 	uiGmapGoogleMapApi.then(function(maps) {
 		ctrl.maps= maps;
@@ -25,20 +27,51 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 	          maps.drawing.OverlayType.MARKER,
 	        ]
 	    }
-	  };
-	  $scope.$watch(
-	  	function(){
-	  		return ctrl.drawingManagerControl.getDrawingManager;
-	  	},
-	  	function(){
-	  		if(ctrl.drawingManagerControl.getDrawingManager){
-	  			ctrl.maps.event.addListener(ctrl.drawingManagerControl.getDrawingManager(), 'overlaycomplete', function(event) {
-					  if (event.type === ctrl.maps.drawing.OverlayType.MARKER) {
-					    event.overlay.getRadius();
-					  }
-					});
-	  		}
-	  },true);
-
+	  };	  
   });
+
+  $scope.$watch(
+  	function(){
+  		return ctrl.drawingManagerControl.getDrawingManager;
+  	},
+  	function(){
+  		if(ctrl.drawingManagerControl.getDrawingManager){
+  			ctrl.maps.event.addListener(ctrl.drawingManagerControl.getDrawingManager(), 'overlaycomplete', function(event) {
+				  if (event.type === ctrl.maps.drawing.OverlayType.MARKER) {
+				  	var marker = event.overlay.position;
+				  	marker.id = id;
+				  	id+=1;
+				    ctrl.markers.push(marker);
+				  }
+				});
+  	}
+	},true);
+
+	ctrl.distanceMatrix = function(){
+		var service = new ctrl.maps.DistanceMatrixService();
+		service.getDistanceMatrix(
+  	{
+	    origins: ctrl.markers,
+	    destinations: ctrl.markers,
+	    travelMode: ctrl.maps.TravelMode.DRIVING,
+    	unitSystem: ctrl.maps.UnitSystem.METRIC ,
+	    durationInTraffic: true,
+	    avoidHighways: false,
+	    avoidTolls: false
+  	}, sendDistanceMatrix);
+	};
+
+	function sendDistanceMatrix(matrix){
+		//MOCK
+		//nic nie robi można sobie podejrzeć jak wygląda ta macierz
+		// var cMatrix;
+		// cMatrix = matrix;
+
+		MainService.sendDistanceMatrix(matrix)
+			.then(function(){
+				//do something
+		});
+	}
+
+
 });
