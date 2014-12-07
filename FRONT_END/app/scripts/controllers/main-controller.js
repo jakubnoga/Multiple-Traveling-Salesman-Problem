@@ -42,6 +42,7 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 				  	var marker = event.overlay.position;
 				  	marker.id = id;
 				  	id+=1;
+				  	ctrl.maps.event.addListener(marker, 'click', deleteMarker);
 				    ctrl.markers.push(marker);
 				  }
 				});
