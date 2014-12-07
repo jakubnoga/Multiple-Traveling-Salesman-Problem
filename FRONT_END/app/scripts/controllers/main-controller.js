@@ -1,20 +1,21 @@
 'use strict';
 angular.module('MTSPApp').controller('MainCtrl', function (
 	uiGmapGoogleMapApi,
-	$scope,
-	MainService
+	$scope
+	//MainService
 	) {
 
 	var ctrl = this;
 	ctrl.drawingManagerControl = {};
+	ctrl.credentials = {};
 	ctrl.markers=[];
 	var id=1;
 
 	uiGmapGoogleMapApi.then(function(maps) {
 		ctrl.maps= maps;
 		ctrl.map = {
-	  	center: {latitude: 40.1451, longitude: -99.6680 }, 
-	  	zoom: 4, 
+	  	center: {latitude: 52.335339071889386, longitude: 19.1162109375 }, 
+	  	zoom: 6, 
 	  	bounds: {}
 	  };
 	  ctrl.options = {scrollwheel: true};
@@ -58,20 +59,28 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 	    durationInTraffic: true,
 	    avoidHighways: false,
 	    avoidTolls: false
-  	}, sendDistanceMatrix);
+  	}, function(matrix){
+  		ctrl.matrix = matrix;
+  	});
 	};
 
-	function sendDistanceMatrix(matrix){
-		//MOCK
-		//nic nie robi można sobie podejrzeć jak wygląda ta macierz
-		// var cMatrix;
-		// cMatrix = matrix;
+	ctrl.deleteMarker = function(event){
+		var a;
+		a = event;
+	};
 
-		MainService.sendDistanceMatrix(matrix)
-			.then(function(){
-				//do something
-		});
-	}
-
+	ctrl.sendData = function(form,credentials){
+    if (form.$valid) {
+      ctrl.distanceMatrix();
+      console.log(credentials);
+		// MainService.sendDistanceMatrix(matrix, credentials)
+		// 	.then(function(){
+		// 		//do something
+		// });
+    } else {
+      form.submitted = true;
+      console.log('invalid form');
+    }
+	};
 
 });

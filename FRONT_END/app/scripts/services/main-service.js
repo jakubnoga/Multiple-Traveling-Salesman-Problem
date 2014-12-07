@@ -17,5 +17,4 @@ angular.module('MTSPApp').service('MainService', function (
 			console.log('not ok');
 		});
 	};
-
 });

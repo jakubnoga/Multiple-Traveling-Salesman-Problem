@@ -1,0 +1,21 @@
+<ui-gmap-google-map 
+  center="mCtrl.map.center" 
+  zoom="mCtrl.map.zoom" 
+  draggable="true" 
+  options="mCtrl.options" 
+  bounds="mCtrl.map.bounds">
+
+    <ui-gmap-drawing-manager 
+    	options="mCtrl.drawingManagerOptions" 
+    	control="mCtrl.drawingManagerControl">
+    </ui-gmap-drawing-manager>
+
+    <ui-gmap-markers 
+    	models="mCtrl.markers" 
+    	idkey="id"
+    	click="mCtrl.deleteMarker(this)" 
+    	coords="'self'" 
+    	icon="'icon'">
+    </ui-gmap-markers>
+
+</ui-gmap-google-map>

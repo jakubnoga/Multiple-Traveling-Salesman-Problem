@@ -1,30 +1,73 @@
 <div class="row">
-  <div class="col-md-6">
-    <h1>
-      GUI<button ng-click="mCtrl.distanceMatrix()" class="btn btn-default">MATRIX</button>
-    </h1>
+  <div class="col-md-6">    
+    <div class="jumbotron">
+      <div class="container">
+        <h3>Parametry</h3>
+        <form name="mainForm" novalidate>
+           <!-- ng-submit="signupForm()" -->
+
+          <div class="form-group">
+            <label for="salesmanInput">Ilość kurierów</label>
+            <input type="number" 
+              class="form-control" 
+              id="salesmanInput" 
+              placeholder="Proszę podać liczbę kurierów"
+              ng-required="true"
+              ng-class="{invalid: mainForm.submitted && mainForm.salesmanInput.$invalid}"
+              ng-minlength="1"
+              name="salesmanInput"
+              ng-maxlength="6"
+              ng-model="mCtrl.credentials.salesmen">
+              <div class="error-container" ng-show="mainForm.submitted && mainForm.salesmanInput.$invalid">
+                <div class="error" ng-show="mainForm.salesmanInput.$error.required">Proszę wypełnić pole</div>
+                <div class="error" ng-show="mainForm.salesmanInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+                <div class="error" ng-show="mainForm.salesmanInput.$error.number">Proszę wpisać liczbę</div>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="beeInput">Ilość pszczół</label>
+            <input type="number" 
+              class="form-control" 
+              id="beeInput" 
+              name="beeInput"
+              placeholder="Proszę podać liczbę pszczół"
+              ng-class="{invalid: mainForm.submitted && mainForm.beeInput.$invalid}"
+              ng-minlength="1"
+              ng-maxlength="6"
+              ng-model="mCtrl.credentials.bees">
+              <div class="error-container" ng-show="mainForm.submitted && mainForm.beeInput.$invalid">
+                <div class="error" ng-show="mainForm.beeInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+                <div class="error" ng-show="mainForm.beeInput.$error.number">Proszę wpisać liczbę</div>
+                <div class="error" ng-show="mainForm.beeInput.$error.negative">Proszę wpisać dodatnią liczbę</div>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="iterationInput">Ilość iteracji</label>
+            <input type="number" 
+              class="form-control" 
+              id="iterationInput" 
+              placeholder="Proszę podać liczbę iteracji"
+              name="iterationInput"
+              ng-class="{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}"
+              ng-minlength="1"
+              ng-maxlength="6"
+              ng-model="mCtrl.credentials.iterations">
+              <div class="error-container" ng-show="mainForm.submitted && mainForm.iterationInput.$invalid">
+                <div class="error" ng-show="mainForm.iterationInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+                <div class="error" ng-show="mainForm.iterationInput.$error.number">Proszę wpisać liczbę</div>
+                <div class="error" ng-show="mainForm.iterationInput.$error.negative">Proszę wpisać dodatnią liczbę</div>
+              </div>
+          </div>
+
+          <button type="submit" ng-click="mCtrl.sendData(mainForm, mCtrl.credentials)" class="btn btn-default pull-right">Zatwierdź</button>
+
+        </form>
+      </div>
+  </div>
   </div>
   <div class="col-md-6">
-    <ui-gmap-google-map 
-      center="mCtrl.map.center" 
-      zoom="mCtrl.map.zoom" 
-      draggable="true" 
-      options="mCtrl.options" 
-      bounds="mCtrl.map.bounds">
-        <ui-gmap-drawing-manager 
-          options="mCtrl.drawingManagerOptions" 
-          control="mCtrl.drawingManagerControl">
-        </ui-gmap-drawing-manager>
-        <ui-gmap-markers 
-          models="mCtrl.markers"
-          idkey="id" 
-          coords="'self'"
-          icon="'icon'">
-        </ui-gmap-markers>
-    </ui-gmap-google-map>
+    <ng-include src="'views/map.html'"><ng-include>
+  </div>
 </div>
-  </div>  
-</div>
-
-
-

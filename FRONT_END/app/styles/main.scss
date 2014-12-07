@@ -1,13 +1,48 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+
+//---colors:
+$tall-poppy: #C22D29;
+//--/colors
 
 body {
   padding-top: 51px;
   padding-bottom: 51px;
 }
 
-.angular-google-map-container { 
-  height: 600px; 
+.view-container{
+	margin-left:20px;
+	margin-right:20px;
+	margin-top: 35px;
+	height: 100%;
+}
+
+.jumbotron{
+	padding-top:15px;
+}
+
+.pull-right{
+	float:right !important;
+}
+
+.angular-google-map-container {
+  height: 600px;
+}
+
+.invalid {
+  border: 1px solid $tall-poppy;
+  &:focus {
+		border-color: $tall-poppy;
+		outline: 0;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $tall-poppy;
+	}
+}
+
+.error-container{
+	color: $tall-poppy;
+	margin-top: 5px;
+	padding-left: 3px;
 }
