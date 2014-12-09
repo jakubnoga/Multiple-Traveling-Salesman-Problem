@@ -1,5 +1,10 @@
 package com.jurnog.mtsp.beealgorithm;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -8,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Vector;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -17,6 +23,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import com.jurnog.mtsp.MTSPProblem;
+import com.jurnog.mtsp.beealgorithm.WorkerBee.ExplorationMethod;
+import com.jurnog.mtsp.utilities.NeighbourhoodComparator;
 
 public class BeeHive {
 	protected ExecutorService beePool;
@@ -69,7 +77,7 @@ public class BeeHive {
 		Vector<Integer> route = hood.getRoute();
 		
 		int startSearch = 1;
-		
+				
 		while(startSearch != route.size()-1){
 //			System.out.println(startSearch);
 			Vector<Integer> subroute = new Vector<Integer>();
@@ -84,6 +92,8 @@ public class BeeHive {
 			startSearch = subrouteEnd;
 		}
 		
+//		System.out.println("sn: " + salesmenNumber);
+		
 		if(salesmenNumber < subroutes.size()){
 			acceptable = false;
 		}
@@ -95,7 +105,7 @@ public class BeeHive {
 				int src = sr.get(i);
 				int dest = sr.get(i+1);
 				cost += problem.getCostMatrix()[src][dest];
-			}
+			}			
 			if(cost > maxLength){
 				acceptable = false;
 				break;
@@ -128,9 +138,12 @@ public class BeeHive {
 				}					
 			}
 		} catch (InterruptedException | ExecutionException e1) {
+			close();
 			e1.printStackTrace();
+		} catch (Exception e){
+			close();
 		}
-		
+				
 //		System.out.println("finished scouting");
 	}
 	
@@ -138,21 +151,60 @@ public class BeeHive {
 //		System.out.println("setting elite");
 		List<Entry<Neighbourhood, Double>> sortedHoods = new LinkedList<Entry<Neighbourhood, Double>>(neighbourhoods.entrySet());
 		
-		Collections.sort(sortedHoods, new Comparator<Entry<Neighbourhood, Double>>() {
-
-			@Override
-			public int compare(Entry<Neighbourhood, Double> o1,
-					Entry<Neighbourhood, Double> o2) {
-				return o1.getValue().compareTo(o2.getValue());
-			}
-			
-		});
+		Collections.sort(sortedHoods, new NeighbourhoodComparator());
+		
+		eliteNeighbourhoods = new LinkedHashMap<Neighbourhood, Double>();
 		
 		for(int i = 0; i < eliteNeighbourhoodNumber; i++){
 			Neighbourhood key = sortedHoods.get(i).getKey();
 			double value = sortedHoods.get(i).getValue();
 			eliteNeighbourhoods.put(key, value);
 		}
+	}
+	
+	public void exploreEliteNeighbourhoods(int normValue){
+		List<Callable<int[][]>> bees = new LinkedList<Callable<int[][]>>();
+		for(Entry<Neighbourhood, Double> ent: eliteNeighbourhoods.entrySet()){
+			for(int i = 0; i < beePerEliteNeighbourhood; i++){
+//				System.out.println("New bee: " + ent.getValue());
+				Callable<int[][]> bee = new WorkerBee(ent.getKey());
+				((WorkerBee)bee).setMethod(ExplorationMethod.Permutation);
+				((WorkerBee)bee).setNormValue(normValue);
+				bees.add(bee);
+			}
+		}
+		
+		HashMap<Neighbourhood, Double> newHoods = new HashMap<Neighbourhood, Double>();
+		
+		try {			
+			List<Future<int[][]>> future = beePool.invokeAll(bees);
+			for(Future<int[][]> res : future){
+				if(res.get()!=null){
+					int[][] transitionMatrix = res.get();
+					
+//					System.out.println(Arrays.deepToString(transitionMatrix));
+					
+					Neighbourhood hood = new Neighbourhood(transitionMatrix);					
+					double value = checkValue(hood);
+//					System.out.println("Exploration: " + value);
+					if(checkRestrictions(hood)){
+						newHoods.put(hood,value);
+					}				
+				}
+			}
+//			System.out.println(newHoods.size());
+			if(!newHoods.isEmpty()){
+				neighbourhoods = new HashMap<Neighbourhood, Double>();
+				neighbourhoods.putAll(newHoods);
+			}
+		} catch (InterruptedException | ExecutionException e1) {
+			close();
+			e1.printStackTrace();
+		} 
+//		catch (Exception e){
+//			close();
+//			e.printStackTrace();
+//		}
 	}
 
 	public int getScoutBeesNumber() {
@@ -205,5 +257,39 @@ public class BeeHive {
 
 	public void close() {
 		beePool.shutdown();		
+	}
+
+
+	public void parsePropertiesFile() {
+		String fileName = "resources/tsplib.properties";
+		Properties props = new Properties();
+		
+		FileInputStream inp = null;
+		try {
+			inp = new FileInputStream(fileName);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		 
+		if (inp != null) {
+			try {
+				props.load(inp);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		for(String key : props.stringPropertyNames()){
+			System.out.println(props.getProperty(key));
+		}
+		problem.loadProblemFromTSPLibXY(props.getProperty("tspPath"));
+		problem.setMaxSalesmanNumber(Integer.parseInt(props.getProperty("maxSalesman")));
+		problem.setMaxSalesmanRouteLength(Double.parseDouble(props.getProperty("maxRoutePerSalesman")));
+		problem.setSalesmanDispatchCost(Double.parseDouble(props.getProperty("salesmanDispatchCost")));
+		setInterations(Integer.parseInt(props.getProperty("iterations")));
+		setBeePerEliteNeighbourhood(Integer.parseInt(props.getProperty("beesPerEliteNeighbourhood")));
+		setEliteNeighbourhoodNumber(Integer.parseInt(props.getProperty("numberOfEliteNeighbourhood")));
+		setScoutBeesNumber(Integer.parseInt(props.getProperty("randomSolutionsNumber")));
+		
 	}	
 }

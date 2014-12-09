@@ -6,4 +6,8 @@
 19 15 12 11 -1
 100
 300
+<<<<<<< HEAD
+5 
+=======
 1 
+>>>>>>> refs/remotes/origin/master
