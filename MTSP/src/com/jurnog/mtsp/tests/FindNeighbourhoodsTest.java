@@ -12,20 +12,30 @@ public class FindNeighbourhoodsTest {
 	public static void main(String[] args) {
 		BeeHive hive = new BeeHive();
 		hive.problemFromFile("resources/instance1.txt");
-		hive.setEliteNeighbourhoodNumber(9);
-		hive.setScoutBeesNumber(100);
+		hive.setEliteNeighbourhoodNumber(100);
+		hive.setBeePerEliteNeighbourhood(2);
+		hive.setBeePerNeighbourhood(1);
+		hive.setScoutBeesNumber(20000);
 		hive.sendScouts();
-			
 		hive.setEliteNeighbourhoods();
 		
-		int i = 0;
-		LinkedHashMap<Neighbourhood, Double> hoods = hive.getEliteNeighbourhoods();
-		for(Entry<Neighbourhood,Double> ent : hoods.entrySet()){
-			System.out.println(i+": "+ent.getValue());
-			i++;
+//		for(Entry<Neighbourhood, Double> ent : hive.getEliteNeighbourhoods().entrySet()){
+//			System.out.println(ent.getValue());
+//		}
+		
+		for(int i = 0; i < 1000; i++){
+			System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+__+_+_+Iteration number: " + i);
+			hive.exploreEliteNeighbourhoods(4);
+			hive.setEliteNeighbourhoods();			
+		}
+		System.out.println("\n\n");
+		
+		for(Entry<Neighbourhood, Double> ent : hive.getEliteNeighbourhoods().entrySet()){
+			System.out.println(ent.getValue());
 		}
 		
 		hive.close();
+
 	}
 
 }

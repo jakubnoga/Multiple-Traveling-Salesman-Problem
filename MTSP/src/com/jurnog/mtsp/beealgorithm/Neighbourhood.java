@@ -16,6 +16,8 @@ public class Neighbourhood {
 		route = new Vector<Integer>();
 		dimensions = this.transitionMatrix[0].length;
 		
+//		System.out.println("Hood dim: " + dimensions);
+		
 		visitedTowns = new HashMap<Integer,Boolean>();
 		for(int townNumber = 0; townNumber < dimensions; townNumber++){
 			visitedTowns.put(townNumber,false);
@@ -31,17 +33,19 @@ public class Neighbourhood {
 		route.add(0);
 		
 		while(!allTownsVisited()){
-			if(transitionMatrix[row][column] != 1 || (transitionMatrix[row][column] == 1 && visitedTowns.get(column) && column != 0)){
-				column++;
-			} else {
-//				System.out.println(column);
-				route.add(column);
-				visitedTowns.put(column, true);
-				row = column;
-				column = 0;
-			}
+				if(transitionMatrix[row][column] != 1 || (transitionMatrix[row][column] == 1 && visitedTowns.get(column) && column != 0) || column == row){
+					column++;
+	//				System.out.println(column);
+				} else {
+//					System.out.println("Row: " + row + " Column: " + column);
+					route.add(column);
+					visitedTowns.put(column, true);
+					row = column;
+					column = 0;
+				}
 		}
-//		System.out.println(route.toString());		
+		route.add(0);
+//		System.out.println(route.toString() + " " + route.size());		
 	}
 	
 	private boolean allTownsVisited(){

@@ -1,0 +1,186 @@
+\documentclass[11pt]{article}
+\usepackage[OT4]{polski}
+\usepackage[cp1250]{inputenc} 
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+\numberwithin{equation}{subsection}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\lstset{
+  basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+  tabsize = 2,
+  commentstyle=\color{mygreen},
+  language=Java
+}
+
+\begin{document}
+
+\title{Multiple Traveling Salesmen Problem}
+\author{Marcin Juraszek \\ Jakub Noga}
+\maketitle
+	\section{Wstêp}
+		\subsection{Opis problemu}
+		Problem wielu komiwoja¿erów (MTSP) jest odmian¹ szeroko znanego problemu
+		komiwoja¿era (TSP). Problem charakteryzuje siê wiêksz¹ z³o¿onoœci¹ (wiêksza
+		liczba rozwi¹zañ dopuszczalnych), natomiast nie powoduje to zwiêkszenia
+		trudnoœci w jego matematycznym modelowaniu. 
+		\newline
+		\newline
+		Istnienie problemu wielu komiwoja¿erów mo¿emy zaobserwowaæ na przyk³ad w
+		logistyce, kiedy to dysponuj¹c ograniczon¹ flot¹ pojazdów i kierowców (w
+		odró¿nieniu do TSP, gdzie dysponujemy dok³adnie jednym) chcemy dostaæ siê do
+		wielu miejscowoœci ponosz¹c mo¿liwie najni¿sze, zdefiniowane przez nas koszty.
+		
+		\subsection{Podejœcie do problemu}
+		Zdecydowaliœmy, ¿e przyst¹pimy do rozwa¿añ nad problemem sprowadzaj¹c go do
+		klasycznego problemu jednego komiwoja¿era, stosuj¹c jedynie drobn¹
+		modyfikacjê: miasto - $baza$ mo¿e zostaæ osi¹gniête wielokrotnie. Spowoduje
+		to powstanie opartych na nim podcykli, które, równowa¿nie, mo¿na traktowaæ
+		jako zakoñczenie trasy jednego, a rozpoczêcie drugiego komiwoja¿era.
+	
+	\section{Model matematyczny}
+		\subsection{Struktura danych}
+		Do przedstawienia danych problemu w jêzyku pos³u¿yliœmy siê macierzami oraz, w
+		niektórych przypadkach, wektorami.
+		\newline
+		\newline		
+		Podstawowe dane na temat konkretnej
+		instancji problemu tj. koszty przejœæ pomiêdzy kolejnymi miastami
+		przedstawiliœmy w postaci macierzy kosztów $n \times n$:
+		$$
+				C = \begin{bmatrix} 0 & c_{01} & c_{02} & \hdots & c_{0n} \\ 
+				c_{10} & 0 & c_{12} & \hdots & c_{1n} \\
+				\vdots & & \ddots & & \vdots \\
+				c_{n0} & & \hdots & & 0
+		\end{bmatrix}
+		$$ 
+		\newline
+		Gdzie $c_{ij}$ to koszt przejœcia pomiêdzy miastem $i$ a $j$.
+		\newline
+		\newline
+		Do przechowania rozwi¹zañ skorzystaliœmy z dwóch równowa¿nych postaci zapisu
+		sekwencji przejœæ z miasta do miasta: macierzy przejœæ $X$ oraz wektora $r$.
+		Gdzie: $$X = [X_{ij}] \in \{0,1\}$$ oraz $$ r = [0,r_0,\ldots,r_m, 0]
+		:
+		r_k \in \{0, \ldots, n\}$$
+		\newline
+		\newline
+		Na przyk³ad macierz: 
+		$$X = \begin{bmatrix} 0 & 1 & 0 & 1 & 0 \\
+							  0 & 0 & 1 & 0 & 0 \\
+							  0 & 0 & 0 & 1 & 0 \\
+							  1 & 0 & 0 & 0 & 0 \\
+							  1 & 0 & 0 & 0 & 0
+		\end{bmatrix}
+		$$
+		Odpowiada wektorowi: $$r = [0,1,2,3,0,4,0]$$
+		\newpage
+		\subsection{Model}
+		Problem wielu komiwoja¿erów mo¿na przedstawiæ jako nastêpuj¹cy problem
+		programowania ca³kowito-liczbowego:
+		\newline
+		\newline
+		$X$ - macierz przejœæ
+		\newline
+		$C$ - macierz kosztów
+		\newline
+		$n$ - rozmiar problemu (iloœæ miast)
+		\newline
+		$m$ - iloœæ komiwoja¿erów
+		\newline
+		$c_m$ - koszt wys³ania jednego komiwoja¿era
+		\begin{equation}
+		F(X) = \sum\limits_{i=0}^n\sum\limits_{j=0}^n(C_{ij}X_{ij} + mc_m)\rightarrow
+		min 
+		\end{equation} 
+		\begin{equation}
+		0 \leq \sum\limits_{j=1}^n X_{0j}=\sum\limits_{i=1}^n X_{i0} \leq m 
+		\end{equation} 
+		\begin{equation}
+		\sum\limits_{i=1}^nX_{ij} = 1 : j=1,\ldots,n
+		\end{equation}
+		\begin{equation} 
+		\sum\limits_{j=1}^nX_{ij} = 1 : i=1,\ldots,n
+		\end{equation} 
+	\newpage
+	\section{Adaptacja algorytmu pszczelego}
+		\subsection{Przebieg pracy algorytmu}
+		\subsubsection{Scouting}
+		Scouting - wys³anie pszczó³ zwiadowców, polega na wygenerowaniu zbioru
+		losowych rozwi¹zañ dopuszczalnych. Klasa $ScoutBee$ posiada metodê:
+		\begin{lstlisting}
+public int[][] call() throws Exception {
+	int [][]transitionMatrix = new int[dimensions][dimensions];
+	while(!allTownsVisited()){ 
+		int nextTown = -1; int currentTown = stepOutOfDepot();
+		transitionMatrix[0][currentTown] = 1;
+		visitedTowns.put(currentTown, true);
+		while(!allTownsVisited()){
+			nextTown = takeStep();
+			if(nextTown == 0){					
+				break;
+			} else {
+				transitionMatrix[currentTown][nextTown] = 1;
+				visitedTowns.put(nextTown, true);
+			}
+			currentTown = nextTown;
+		}
+		transitionMatrix[currentTown][0] = 1;
+	}		
+	return transitionMatrix;
+}
+		\end{lstlisting}
+		Metoda ta budujê losow¹ macierz przejœæ w nastêpuj¹cy sposób:
+		\begin{enumerate}[(1)]
+		  \item Je¿eli nie odwiedzono jeszcze wszystkich miast, wylosuj, do
+		  którego wyjœæ z bazy.
+		  \item Dopóki nie odwiedzono wszystkich miast losuj kolejne miasto do momentu
+		  powrotu do bazy.
+		  \item Wróæ do pkt. 1.
+		\end{enumerate}
+		Ka¿da pszczo³a-zwiadowca zwraca jedn¹ losow¹ macierz przejœæ. Iloœæ
+		pszczó³-zwiadowców ustalana jest przez u¿ytkownika.
+		\subsubsection{Wybór s¹siedztw elitarnych}
+		Za s¹siedztwa elitarne uwa¿amy zbiór rozwi¹zañ (licznoœæ - $l$ tego zbioru
+		jest okreœlana przez u¿ytkownika), które charakteryzuj¹ siê najwy¿sz¹ wartoœci¹
+		funkcji celu. Przypisanie odbywa siê poprzez sortowanie malej¹ce listy
+		s¹siedztw zwyczajnych (losowo wybranych poprzez Scouting), a nastêpnie wybór pierwszych
+		$l$ obiektów z listy.
+		\subsubsection{Eksploracja s¹siedztw elitarnych}
+		Na tym etapie algorytm korzysta z postaci równowa¿nej do macierzy przejœæ - X,
+		czyli wektora przejœæ - r.
+		\newline
+		\newline
+		Eksploracja s¹siedztw elitarnych polega na
+		modyfikacji rozwi¹zañ na jeden z dwóch sposobów:
+		\begin{enumerate}[(a)]
+		  \item Permutowanie wektora przejœæ - losowa zmiana kolejnoœci na $n$
+		  kolejnych pozycjach wektora, liczba $n$ zmienia siê proporcjonalnie
+		  do liczby pozosta³ych iteracji w zakresie podanym przez u¿ytkownika.
+		  \item Losow¹ zmianê pozycji $m$ elementów wektora przejœæ poprzez kolejno
+		  usuniêcie i losowe umieszczenie ka¿dego z nich.
+		\end{enumerate}
+		Ka¿de z s¹siedztw elitarnych eksplorowane jest przez $w$ pszczó³-robotnic -
+		liczba $w$ ustalana jest przez u¿ytkownika.
+		\subsubsection{Iteracje}
+		Iloœæ iteracji ustalana jest przez u¿ytkownika. Podczas ka¿dej itaracji
+		powstaje $l \cdot w$ s¹siedztw dlatego wysoce niewydajnym, pod wzglêdem
+		pamiêci operacyjnej, jest przechowywanie wszystkich wyników. Z tego powodu, co
+		ustalon¹ liczbê iteracji $i$ nastêpuje ponowny wybór s¹siedztw elitarnych spoœród
+		s¹siedztw powsta³ych z eksploracji. Po tej operacji algorytm kontynuuje
+		standardow¹ eksploracjê.
+		\subsubsection{Zbiór parametrów algorytmu}
+		\begin{itemize}
+		  \item s - liczba pszczó³-zwiadowców
+		  \item l - liczba s¹siedztw elitarnych
+		  \item w - liczba pszczó³-robotnic przypadaj¹ca na jedno s¹siedztwo elitarne
+		  \item n - iloœæ elemetów wektora przejœæ, które bêd¹ permutowane (wielkoœæ
+		  s¹siedztwa)
+		  \item m - iloœæ elemetów wektora przejœæ, którym pozycja zostanie zmieniona
+		  (wielkoœæ s¹siedztwa)
+		  \item i - liczba iteracji, po których s¹siedztwa elitarne zostan¹ przypisane
+		  na now
+		  \item t - iloœæ iteracji algorytmu
+		\end{itemize}
+\end{document}
