@@ -57,26 +57,30 @@ angular.module('MTSPApp').controller('MainCtrl', function (
   	}
 	},true);
 
-	ctrl.prepareData = function(form, credentials, isTestInstance){
+	ctrl.distanceMatrix = function(form, credentials){
 		if (form.$valid) {
     	if(ctrl.markers.length === 0){
     		window.alert('Nie wybrano żadnych punktów na mapie');
     	} else {
-    		if(isTestInstance){
-    			ctrl.credentials = credentials;
-    			ctrl.sendData();
-    		} else {
-    			ctrl.credentials = credentials;
-					getRow().success(function(){
-						ctrl.sendData();						
-					});    			
-    		}
+    		ctrl.credentials = credentials;
+    		createMatrix();			     	
     	}
+		// MainService.sendDistanceMatrix(matrix, credentials)
+		// 	.then(function(){
+		// 		//do something
+		// });
     } else {
       form.submitted = true;
       console.log('invalid form');
     }		
 	};
+
+	function createMatrix(){
+		var promise = getRow();
+		promise.success(function(){
+			ctrl.sendData();
+		});		
+	}
 
 	var getRow = function(){
 		var deferObj = $q.defer();

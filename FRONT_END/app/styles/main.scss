@@ -1,14 +1,12 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-
-// bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
 
 //---colors:
 $tall-poppy: #C22D29;
 //--/colors
 
 body {
+	//overflow-y:hidden;
   padding-top: 51px;
   padding-bottom: 51px;
 }
@@ -16,16 +14,22 @@ body {
 .view-container{
 	margin-left:20px;
 	margin-right:20px;
-	margin-top: 35px;
-	height: 100%;
+	margin-top: 20px;
 }
-
-.jumbotron{
-	padding-top:15px;
+.full-width-container{
+	width:100%;
+	margin-left:0;
+	margin-right:0;
 }
 
 .pull-right{
 	float:right !important;
+}
+
+.navbar-nav{
+	a{
+		cursor:pointer;
+	}
 }
 
 .angular-google-map-container {
@@ -45,4 +49,12 @@ body {
 	color: $tall-poppy;
 	margin-top: 5px;
 	padding-left: 3px;
+}
+
+.scrollable-y-container{
+	overflow-y:auto;
+}
+
+.full-height{
+	height:100% !important;
 }

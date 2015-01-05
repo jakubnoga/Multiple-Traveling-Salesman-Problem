@@ -1,73 +1,187 @@
-<div class="row">
-  <div class="col-md-6">    
-    <div class="jumbotron">
-      <div class="container">
-        <h3>Parametry</h3>
-        <form name="mainForm" novalidate>
-           <!-- ng-submit="signupForm()" -->
+<div class="container full-width-container full-height">
+  <div class="row">
+    <div class="col-md-6 full-height">      
+      <h1 style="margin-top:0">Parametry</h3>
+      <form name="mainForm" novalidate style="max-height:592px; overflow:auto">
 
-          <div class="form-group">
-            <label for="salesmanInput">Ilość kurierów</label>
-            <input type="number" 
-              class="form-control" 
-              id="salesmanInput" 
-              placeholder="Proszę podać liczbę kurierów"
-              ng-required="true"
-              ng-class="{invalid: mainForm.submitted && mainForm.salesmanInput.$invalid}"
-              ng-minlength="1"
-              name="salesmanInput"
-              ng-maxlength="6"
-              ng-model="mCtrl.credentials.salesmen">
-              <div class="error-container" ng-show="mainForm.submitted && mainForm.salesmanInput.$invalid">
-                <div class="error" ng-show="mainForm.salesmanInput.$error.required">Proszę wypełnić pole</div>
-                <div class="error" ng-show="mainForm.salesmanInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
-                <div class="error" ng-show="mainForm.salesmanInput.$error.number">Proszę wpisać liczbę</div>
-              </div>
-          </div>
+        <div class="form-group">
+          <label for="salesmanInput">Maksymalna ilość kurierów</label>
+          <input type="number" 
+            class="form-control" 
+            id="salesmanInput" 
+            placeholder="Proszę podać maksymalną ilość"
+            ng-required="true"
+            ng-class="{invalid: mainForm.submitted && mainForm.salesmanInput.$invalid}"
+            ng-minlength="1"
+            name="salesmanInput"
+            ng-maxlength="6"
+            min="0"
+            ng-model="mCtrl.credentials.salesmen">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.salesmanInput.$invalid">
+              <div class="error" ng-show="mainForm.salesmanInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.salesmanInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.salesmanInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.salesmanInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div>
 
-          <div class="form-group">
-            <label for="beeInput">Ilość pszczół</label>
-            <input type="number" 
-              class="form-control" 
-              id="beeInput" 
-              name="beeInput"
-              placeholder="Proszę podać liczbę pszczół"
-              ng-class="{invalid: mainForm.submitted && mainForm.beeInput.$invalid}"
-              ng-minlength="1"
-              ng-maxlength="6"
-              ng-model="mCtrl.credentials.bees">
-              <div class="error-container" ng-show="mainForm.submitted && mainForm.beeInput.$invalid">
-                <div class="error" ng-show="mainForm.beeInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
-                <div class="error" ng-show="mainForm.beeInput.$error.number">Proszę wpisać liczbę</div>
-                <div class="error" ng-show="mainForm.beeInput.$error.negative">Proszę wpisać dodatnią liczbę</div>
-              </div>
-          </div>
+        <div class="form-group">
+          <label for="salesmanDistanceInput">Maksymalna droga kuriera</label>
+          <input type="number" 
+            class="form-control" 
+            id="salesmanDistanceInput" 
+            placeholder="Proszę podać maksymalną drogę"
+            ng-required="true"
+            ng-class="{invalid: mainForm.submitted && mainForm.salesmanDistanceInput.$invalid}"
+            ng-minlength="1"
+            name="salesmanDistanceInput"
+            ng-maxlength="6"
+            min="0"
+            ng-model="mCtrl.credentials.salesmanDistance">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.salesmanDistanceInput.$invalid">
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div>         
 
-          <div class="form-group">
-            <label for="iterationInput">Ilość iteracji</label>
-            <input type="number" 
-              class="form-control" 
-              id="iterationInput" 
-              placeholder="Proszę podać liczbę iteracji"
-              name="iterationInput"
-              ng-class="{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}"
-              ng-minlength="1"
-              ng-maxlength="6"
-              ng-model="mCtrl.credentials.iterations">
-              <div class="error-container" ng-show="mainForm.submitted && mainForm.iterationInput.$invalid">
-                <div class="error" ng-show="mainForm.iterationInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
-                <div class="error" ng-show="mainForm.iterationInput.$error.number">Proszę wpisać liczbę</div>
-                <div class="error" ng-show="mainForm.iterationInput.$error.negative">Proszę wpisać dodatnią liczbę</div>
-              </div>
-          </div>
+        <div class="form-group">
+          <label for="salesmanCostInput">Koszt wysłania jednego kuriera</label>
+          <input type="number" 
+            class="form-control" 
+            id="salesmanCostInput" 
+            placeholder="Proszę podać koszt wysłania"
+            ng-required="true"
+            ng-class="{invalid: mainForm.submitted && mainForm.salesmanCostInput.$invalid}"
+            ng-minlength="1"
+            name="salesmanCostInput"
+            ng-maxlength="6"
+            min="0"
+            ng-model="mCtrl.credentials.salesmanCost">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.salesmanCostInput.$invalid">
+              <div class="error" ng-show="mainForm.salesmanCostInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.salesmanCostInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.salesmanCostInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.salesmanCostInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div>  
 
-          <button type="submit" ng-click="mCtrl.sendData(mainForm, mCtrl.credentials)" class="btn btn-default pull-right">Zatwierdź</button>
+        <div class="form-group">
+          <label for="neigbourhoods">Ilość sąsiedztw</label>
+          <input type="number" 
+            class="form-control" 
+            id="neigbourhoodsInput" 
+            placeholder="Proszę podać ilość sąsiedztw"
+            ng-required="true"
+            ng-class="{invalid: mainForm.submitted && mainForm.neigbourhoodsInput.$invalid}"
+            ng-minlength="1"
+            name="neigbourhoodsInput"
+            ng-maxlength="6"
+            min="0"
+            ng-model="mCtrl.credentials.neighbourhoods">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.neigbourhoodsInput.$invalid">
+              <div class="error" ng-show="mainForm.neigbourhoodsInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.neigbourhoodsInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.neigbourhoodsInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.neigbourhoodsInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div> 
 
-        </form>
-      </div>
-  </div>
-  </div>
-  <div class="col-md-6">
-    <ng-include src="'views/map.html'"><ng-include>
+        <div class="form-group">
+          <label for="neighbourhoodsFrquencyInput">Częstotliwość zmiany sąsiedztw</label>
+          <input type="number" 
+            class="form-control" 
+            id="neighbourhoodsFrquencyInput" 
+            placeholder="Proszę podać częstotliwość zmiany sąsiedztw"
+            ng-required="true"
+            ng-class="{invalid: mainForm.submitted && mainForm.neighbourhoodsFrquencyInput.$invalid}"
+            ng-minlength="1"
+            name="neighbourhoodsFrquencyInput"
+            ng-maxlength="6"
+            min="0"
+            ng-model="mCtrl.credentials.neighbourhoodsFrequency">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.neighbourhoodsFrquencyInput.$invalid">
+              <div class="error" ng-show="mainForm.neighbourhoodsFrquencyInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.neighbourhoodsFrquencyInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.neighbourhoodsFrquencyInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.neighbourhoodsFrquencyInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="randomSolutionInput">Ilość rozwiązań początkowych</label>
+          <input type="number" 
+            class="form-control" 
+            id="randomSolutionInput" 
+            placeholder="Proszę podać ilość rozwiązań początkowych"
+            ng-required="true"
+            ng-class="{invalid: mainForm.submitted && mainForm.randomSolutionInput.$invalid}"
+            ng-minlength="1"
+            min="0"
+            name="randomSolutionInput"
+            ng-maxlength="6"
+            ng-model="mCtrl.credentials.randomSolutions">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.randomSolutionInput.$invalid">
+              <div class="error" ng-show="mainForm.randomSolutionInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.randomSolutionInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.randomSolutionInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.randomSolutionInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div> 
+
+        <div class="form-group">
+          <label for="beeInput">Ilość pszczół na sąsiedztwo</label>
+          <input type="number" 
+            class="form-control" 
+            id="beeInput" 
+            name="beeInput"
+            placeholder="Proszę podać ilość pszczół"
+            ng-class="{invalid: mainForm.submitted && mainForm.beeInput.$invalid}"
+            ng-minlength="1"
+            ng-maxlength="6"
+            min="0"
+            ng-required="true"
+            ng-model="mCtrl.credentials.bees">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.beeInput.$invalid">
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.beeInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.beeInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.beeInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="iterationInput">Ilość iteracji</label>
+          <input type="number" 
+            class="form-control" 
+            id="iterationInput" 
+            placeholder="Proszę podać ilość iteracji"
+            name="iterationInput"
+            ng-class="{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}"
+            ng-minlength="1"
+            ng-maxlength="6"
+            min="0"
+            ng-required="true"
+            ng-model="mCtrl.credentials.iterations">
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.iterationInput.$invalid">
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.iterationInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.iterationInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.iterationInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div>                   
+      </form>      
+    </div>
+    <div class="col-md-6 full-height">
+      <ng-include src="'views/map.html'"><ng-include>
+    </div>
+    <button type="submit" 
+        ng-click="mCtrl.prepareData(mainForm, mCtrl.credentials, 0)" 
+        class="btn btn-default pull-right"
+        style="margin-top: 30px;
+              margin-right: 10px;">
+        Zatwierdź
+    </button> 
   </div>
 </div>

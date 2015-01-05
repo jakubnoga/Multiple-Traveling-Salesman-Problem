@@ -13,6 +13,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <!-- endbuild -->
   </head>
   <body ng-app="MTSPApp">
@@ -36,7 +37,8 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a ui-sref="/main">Planowanie trasy</a></li>
+              <li ui-sref-active="active"><a ui-sref="main">Planowanie trasy</a></li>
+              <li ui-sref-active="active"><a ui-sref="library">Biblioteka TSP</a></li>
             </ul>
             <!-- <ul class="nav navbar-nav navbar-right">
               <li><a ui-sref="#">PRAWO</a></li>
@@ -45,10 +47,9 @@
         </div>
       </nav>
       <div class="view-container" ui-view></div>
-      <nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse" role="navigation"></nav>
     
 
-     <script>
+     <!--<script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -57,6 +58,17 @@
        ga('create', 'UA-12345-6');
        ga('send', 'pageview');
     </script>
+    <script>
+      var myDataRef = new Firebase('https://gpp9omtz8zj.firebaseio-demo.com/');
+      $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          myDataRef.set('User ' + name + ' says ' + text);
+          $('#messageInput').val('');
+        }
+      });
+    </script>-->
 
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
@@ -97,8 +109,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main-controller.js"></script>
+        <script src="scripts/controllers/library-controller.js"></script>
         <script src="scripts/services/main-service.js"></script>
-        <script src="scripts/directives/number-validate-directive.js"></script>
         <!-- endbuild -->
 
 </body>
