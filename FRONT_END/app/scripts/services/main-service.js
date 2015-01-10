@@ -9,9 +9,9 @@ angular.module('MTSPApp').service('MainService', function (
 	service.sendData = function(data,mode){
 		var url = '';
 		if(mode === 'map'){
-			url = '/mappoints';
+			url = 'mappoints';
 		} else if (mode === 'tsplib') {
-			url = '/tsplib';
+			url = 'tsplib';
 		} else {
 			console.log('Unknown mode. STOP');
 			return;
@@ -19,7 +19,7 @@ angular.module('MTSPApp').service('MainService', function (
 		return $http({
 			method:'POST',
 			url: serverURL.url + url,
-			data: data
+			data: 'data=' + JSON.stringify(data)
 		}).success(function(resolve){
 			window.alert('SUKCES, dane w konsoli');
 			console.log(resolve);
