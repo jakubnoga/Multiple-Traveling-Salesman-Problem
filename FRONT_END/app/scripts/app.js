@@ -46,8 +46,8 @@ $stateProvider
   }).state('library', {
     url: '/library',
     templateUrl: 'views/library.html',
-    controller: 'MainCtrl',
-    controllerAs: 'mCtrl'
+    controller: 'LibraryCtrl',
+    controllerAs: 'libCtrl'
   });
 })
 

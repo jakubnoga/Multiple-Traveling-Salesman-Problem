@@ -1,8 +1,8 @@
 'use strict';
 angular.module('MTSPApp').controller('MainCtrl', function (
 	uiGmapGoogleMapApi,
-	$scope,
-	$q
+	$scope
+	// $q
 	//MainService
 	) {
 
@@ -23,6 +23,7 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 	};
 	var id=1;
 	var distanceMatrix=[];
+	var destinations = [];
 	var dI=0;	
 
 	uiGmapGoogleMapApi.then(function(maps) {
@@ -67,9 +68,10 @@ angular.module('MTSPApp').controller('MainCtrl', function (
     			ctrl.sendData();
     		} else {
     			ctrl.credentials = credentials;
-					getRow().success(function(){
-						ctrl.sendData();						
-					});    			
+    			distanceMatrix = [];
+    			dI=0;
+    			destinations = [];
+					getRow(); 			
     		}
     	}
     } else {
@@ -79,7 +81,6 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 	};
 
 	var getRow = function(){
-		var deferObj = $q.defer();
 		if(dI<ctrl.markers.length){		
 			var service = new ctrl.maps.DistanceMatrixService();
 			service.getDistanceMatrix({
@@ -92,13 +93,11 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 		    avoidTolls: false
 			}, addRow);			
 		} else {
-			deferObj.resolve();			
+			ctrl.sendData();
 		}
-		return deferObj.promise;
 	};
 
-	var addRow = function(result){
-		var destinations = [];
+	var addRow = function(result){		
 		if(_.isEmpty(destinations)){
 			for(var j = 0; j<result.destinationAddresses.length;j++){
 				destinations[j] = {
@@ -108,6 +107,7 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 				};
 			}
 		}
+		ctrl.destinations = destinations;
 		var row = [];
 		_.each(result.rows[0].elements, function(element){
 			row.push(element.distance.value);
@@ -118,6 +118,7 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 	};
 
 	ctrl.sendData = function(){
+		ctrl.credentials.destinations = ctrl.destinations;
 		console.log(ctrl.credentials);
     console.log(distanceMatrix);
 	};
