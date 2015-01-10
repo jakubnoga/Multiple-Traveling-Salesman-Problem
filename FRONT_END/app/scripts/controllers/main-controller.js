@@ -1,9 +1,9 @@
 'use strict';
 angular.module('MTSPApp').controller('MainCtrl', function (
 	uiGmapGoogleMapApi,
-	$scope
+	$scope,
 	// $q
-	//MainService
+	MainService
 	) {
 
 	var ctrl = this;
@@ -58,21 +58,16 @@ angular.module('MTSPApp').controller('MainCtrl', function (
   	}
 	},true);
 
-	ctrl.prepareData = function(form, credentials, isTestInstance){
+	ctrl.prepareData = function(form, credentials){
 		if (form.$valid) {
     	if(ctrl.markers.length === 0){
     		window.alert('Nie wybrano żadnych punktów na mapie');
     	} else {
-    		if(isTestInstance){
-    			ctrl.credentials = credentials;
-    			ctrl.sendData();
-    		} else {
-    			ctrl.credentials = credentials;
-    			distanceMatrix = [];
-    			dI=0;
-    			destinations = [];
-					getRow(); 			
-    		}
+  			ctrl.credentials = credentials;
+  			distanceMatrix = [];
+  			dI=0;
+  			destinations = [];
+				getRow();
     	}
     } else {
       form.submitted = true;
@@ -119,8 +114,8 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 
 	ctrl.sendData = function(){
 		ctrl.credentials.destinations = ctrl.destinations;
-		console.log(ctrl.credentials);
-    console.log(distanceMatrix);
+		ctrl.credentials.distanceMatrix = distanceMatrix;
+		MainService.sendData(ctrl.credentials,'map');
 	};
 
 });

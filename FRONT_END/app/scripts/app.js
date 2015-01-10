@@ -13,7 +13,7 @@ angular
   ])
 
 .constant('serverURL', {
-    'url': 'http://localhost'
+    'url': ''
 })
 
 .config(function ($provide) {
@@ -47,7 +47,7 @@ $stateProvider
     url: '/library',
     templateUrl: 'views/library.html',
     controller: 'LibraryCtrl',
-    controllerAs: 'libCtrl'
+    controllerAs: 'mCtrl'
   });
 })
 
