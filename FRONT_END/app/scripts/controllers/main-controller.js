@@ -13,6 +13,7 @@ angular.module('MTSPApp').controller('MainCtrl', function (
 		iterations:1000,
 		neighbourhoods:5,
 		neighbourhoodsFrequency:5,
+		normValue:2,
 		randomSolutions:10000
 	};
 	ctrl.markers=[];
