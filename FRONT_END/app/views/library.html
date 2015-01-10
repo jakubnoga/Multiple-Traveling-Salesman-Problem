@@ -130,6 +130,28 @@
                 <div class="error" ng-show="mainForm.beeInput.$error.min">Proszę wpisać dodatnią liczbę</div>
               </div>
           </div>
+		  
+		  <div class="form-group">
+          <label for="normInput">Początkowy rozmiar sąsiedztwa</label>
+          <input type="number" 
+            class="form-control" 
+            id="normInput" 
+            placeholder="Proszę podać rozmiar sąsiedztwa"
+            name="normInput"
+            ng-class="{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}"
+            ng-minlength="1"
+            ng-maxlength="6"
+            min="0"
+            ng-required="true"
+            ng-model="mCtrl.credentials.normValue
+            <div class="error-container" ng-show="mainForm.submitted && mainForm.iterationInput.$invalid">
+              <div class="error" ng-show="mainForm.salesmanDistanceInput.$error.required">Proszę wypełnić pole</div>
+              <div class="error" ng-show="mainForm.iterationInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+              <div class="error" ng-show="mainForm.iterationInput.$error.number">Proszę wpisać liczbę</div>
+              <div class="error" ng-show="mainForm.iterationInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+            </div>
+        </div> 
+		  
           <div class="form-group">
             <label for="iterationInput">Ilość iteracji</label>
             <input type="number" 
@@ -154,7 +176,7 @@
       </div>
       <div class="col-md-6 full-height">
         <div class="form-group">
-            <label for="testInstanceInput">Ilość iteracji</label>
+            <label for="testInstanceInput">Instancja testowa</label>
             <textarea placeholder="Proszę wkleić tutaj zawartość instancji testowej"
               id="testInstanceInput"
               class="form-control"                
