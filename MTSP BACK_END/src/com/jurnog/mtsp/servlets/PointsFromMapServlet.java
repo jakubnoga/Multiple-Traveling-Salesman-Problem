@@ -1,8 +1,10 @@
 package com.jurnog.mtsp.servlets;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -48,12 +50,14 @@ public class PointsFromMapServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String jsonString = request.getParameter("data");
+		
+		List<Entry<Neighbourhood,Double>> bestResults = new LinkedList<Entry<Neighbourhood,Double>>();
 
 		BeeHive hive = new BeeHive();
 		JsonProblemRepresentation representation = new Gson().fromJson(jsonString, JsonProblemRepresentation.class);
 
 		hive.problemFromJson(representation);
-		
+		representation.get
 		int setEliteNeighbourhoodFrequency = representation.getNeighbourhoodFrequency();
 		double initialNormValue = representation.getNormValue();
 		
@@ -75,7 +79,12 @@ public class PointsFromMapServlet extends HttpServlet {
 			
 			if(i % setEliteNeighbourhoodFrequency == 0){
 				hive.setEliteNeighbourhoods();
-			}			
+			}
+			
+			Iterator<Entry<Neighbourhood, Double>> iterator = hive.getEliteNeighbourhoods().entrySet().iterator();			
+			Entry<Neighbourhood, Double> best = iterator.next();
+			
+			bestResults.add(best);
 		}
 		System.out.println("Iteratated " + iterations + " times in " + (System.nanoTime()-startTime)/1000000000.0 + " s");
 		System.out.println("\n\n");
