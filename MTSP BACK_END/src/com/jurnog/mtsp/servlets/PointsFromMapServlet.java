@@ -21,6 +21,7 @@ import com.jurnog.mtsp.JsonProblemRepresentation;
 import com.jurnog.mtsp.MTSPProblem;
 import com.jurnog.mtsp.beealgorithm.BeeHive;
 import com.jurnog.mtsp.beealgorithm.Neighbourhood;
+import com.jurnog.mtsp.web.utilities.Result;
 
 /**
  * Servlet implementation class PointsFromMapServlet
@@ -50,55 +51,63 @@ public class PointsFromMapServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String jsonString = request.getParameter("data");
+		JsonProblemRepresentation representation = new Gson().fromJson(jsonString, JsonProblemRepresentation.class);		
 		
-		List<Entry<Neighbourhood,Double>> bestResults = new LinkedList<Entry<Neighbourhood,Double>>();
-
-		BeeHive hive = new BeeHive();
-		JsonProblemRepresentation representation = new Gson().fromJson(jsonString, JsonProblemRepresentation.class);
-
-		hive.problemFromJson(representation);
-		representation.get
-		int setEliteNeighbourhoodFrequency = representation.getNeighbourhoodFrequency();
-		double initialNormValue = representation.getNormValue();
+		int laps = representation.getLaps();
+		Result result = new Result();
 		
-		System.out.println("Randomizing first " + hive.getScoutBeesNumber() + " solutions");
-		long startTime = System.nanoTime();
-		hive.sendScouts();
-		System.out.println("Scouts returned after: "+ (System.nanoTime()-startTime)/1000000000.0 + " s");
-		hive.setEliteNeighbourhoods();
+		result.bestResults = new double[laps][];
+		result.bestRoute = new int[laps][];
+		result.elapsedTime = new double[laps];
+		result.laps = laps;
 		
-
-		
-		startTime = System.nanoTime();
-		int iterations = hive.getInterations();
-		
-		System.out.println("Started " + iterations + " iterations...");
-		
-		for(int i = 0; i < iterations ; i++){
-			hive.exploreEliteNeighbourhoods((int)(initialNormValue - initialNormValue*(i/iterations)));
+		for(int lap = 0; lap < laps; lap++){
 			
-			if(i % setEliteNeighbourhoodFrequency == 0){
-				hive.setEliteNeighbourhoods();
+			BeeHive hive = new BeeHive();
+			hive.problemFromJson(representation);
+			
+			int setEliteNeighbourhoodsFrequency = representation.getNeighbourhoodsFrequency();
+			double initialNormValue = representation.getNormValue();
+			
+			System.out.println("Randomizing first " + hive.getScoutBeesNumber() + " solutions");
+			long startTime = System.nanoTime();
+			hive.sendScouts();
+			System.out.println("Scouts returned after: "+ (System.nanoTime()-startTime)/1000000000.0 + " s");
+			hive.setEliteNeighbourhoods();		
+
+			int iterations = hive.getInterations();
+			result.bestResults[lap] = new double[iterations];
+			
+			System.out.println("Started " + iterations + " iterations...");
+			
+			for(int i = 0; i < iterations ; i++){
+				hive.exploreEliteNeighbourhoods((int)(initialNormValue - initialNormValue*(i/iterations)));
+				
+				if(i % setEliteNeighbourhoodsFrequency == 0){
+					hive.setEliteNeighbourhoods();
+				}
+				
+				Iterator<Entry<Neighbourhood, Double>> iterator = hive.getEliteNeighbourhoods().entrySet().iterator();			
+				Entry<Neighbourhood, Double> best = iterator.next();
+				result.bestResults[lap][i] = best.getValue();
+				if(i == iterations-1){
+					result.bestRoute[lap] = new int[best.getKey().getRoute().size()];
+					for(int j = 0; j < best.getKey().getRoute().size(); j++){
+						result.bestRoute[lap][j] = best.getKey().getRoute().get(j);
+					}
+				}
 			}
 			
-			Iterator<Entry<Neighbourhood, Double>> iterator = hive.getEliteNeighbourhoods().entrySet().iterator();			
-			Entry<Neighbourhood, Double> best = iterator.next();
+			result.elapsedTime[lap] = (System.nanoTime()-startTime)/1000000000.0;
 			
-			bestResults.add(best);
-		}
-		System.out.println("Iteratated " + iterations + " times in " + (System.nanoTime()-startTime)/1000000000.0 + " s");
-		System.out.println("\n\n");
-		
+			System.out.println("Iteratated " + iterations + " times in " + (System.nanoTime()-startTime)/1000000000.0 + " s");
+			System.out.println("\n\n");
 
-		Iterator<Entry<Neighbourhood, Double>> iterator = hive.getEliteNeighbourhoods().entrySet().iterator();
+			hive.close();
+		}
 		
-		Entry<Neighbourhood, Double> best = iterator.next();
-		System.out.println("Best route found: " + best.getKey().getRoute());
-		System.out.println("Cost: " + best.getValue());
 		
-		hive.close();		
-		
-		response.getWriter().print("Servlet odpowiedzia³");
+		response.getWriter().print(new Gson().toJson(result));
 	}
 
 }

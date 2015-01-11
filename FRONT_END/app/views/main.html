@@ -1,7 +1,7 @@
 <div class="container full-width-container full-height">
   <div class="row">
     <div class="col-md-6 full-height">      
-      <h1 style="margin-top:0">Parametry</h3>
+      <h1 style="margin-top:0">Parametry</h1>
       <form name="mainForm" novalidate style="max-height:592px; overflow:auto">
 
         <div class="form-group">
@@ -190,9 +190,29 @@
               <div class="error" ng-show="mainForm.iterationInput.$error.number">Proszę wpisać liczbę</div>
               <div class="error" ng-show="mainForm.iterationInput.$error.min">Proszę wpisać dodatnią liczbę</div>
             </div>
-        </div>                   
+        </div>
+		<div class="form-group">
+            <label for="lapsInput">Ilość powtórzeń algorytmu</label>
+            <input type="number" 
+              class="form-control" 
+              id="lapsInput" 
+              placeholder="Proszę podać ilość powtórzeń algorytmu"
+              name="lapsInput"
+              ng-class="{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}"
+              ng-minlength="1"
+              ng-maxlength="6"
+              min="1"
+              ng-required="true"
+              ng-model="mCtrl.credentials.laps">
+              <div class="error-container" ng-show="mainForm.submitted && mainForm.iterationInput.$invalid">
+                <div class="error" ng-show="mainForm.iterationInput.$error.required">Proszę wypełnić pole</div>
+                <div class="error" ng-show="mainForm.iterationInput.$error.maxlength">Proszę wpisać mniej niż 6 znaków</div>
+                <div class="error" ng-show="mainForm.iterationInput.$error.number">Proszę wpisać liczbę</div>
+                <div class="error" ng-show="mainForm.iterationInput.$error.min">Proszę wpisać dodatnią liczbę</div>
+              </div>
+          </div>
+        </div>		
       </form>      
-    </div>
     <div class="col-md-6 full-height">
       <ng-include src="'views/map.html'"><ng-include>
     </div>

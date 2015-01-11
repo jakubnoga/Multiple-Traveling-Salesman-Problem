@@ -22,6 +22,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import com.jurnog.mtsp.JsonProblemRepresentation;
 import com.jurnog.mtsp.MTSPProblem;
 import com.jurnog.mtsp.beealgorithm.WorkerBee.ExplorationMethod;
 import com.jurnog.mtsp.utilities.NeighbourhoodComparator;
@@ -37,7 +38,7 @@ public class BeeHive {
 	protected int neighbourhoodNumber;
 	protected int beePerNeighbourhood;
 	protected int beePerEliteNeighbourhood;
-	protected int interations;	
+	protected int iterations;	
 	
 	public BeeHive(){
 		problem = new MTSPProblem();
@@ -50,8 +51,13 @@ public class BeeHive {
 		problem.loadProblemDataFromFile(path);
 	}
 	
-	public void problemFromJson(String json){
+	public void problemFromJson(JsonProblemRepresentation json){
 		problem.loadProblemDataFromJSON(json);
+		scoutBeesNumber = json.getRandomSolutions();
+		eliteNeighbourhoodNumber = json.getNeighbourhoods();
+		beePerEliteNeighbourhood = json.getBees();
+		iterations = json.getIterations();
+		neighbourhoodNumber = json.getNeighbourhoods();		
 	}
 	
 	protected double checkValue(Neighbourhood hood){
@@ -240,11 +246,11 @@ public class BeeHive {
 	}
 
 	public int getInterations() {
-		return interations;
+		return iterations;
 	}
 
 	public void setInterations(int interations) {
-		this.interations = interations;
+		this.iterations = interations;
 	}
 
 	public HashMap<Neighbourhood, Double> getNeighbourhoods() {

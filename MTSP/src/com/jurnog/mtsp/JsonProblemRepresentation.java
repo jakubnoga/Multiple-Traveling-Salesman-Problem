@@ -4,7 +4,7 @@ public class JsonProblemRepresentation {
 	protected int iterations;
 	protected int bees;
 	protected int normValue;
-	protected double[] distanceMatrix;
+	protected double[][] distanceMatrix;
 	protected int salesmen;
 	protected double salesmanCost;
 	protected double salesmanDistance;
@@ -12,11 +12,12 @@ public class JsonProblemRepresentation {
 	protected int randomSolutions;
 	protected int neighbourhoods;
 	protected String tsplib;	
+	protected int laps;
 	
 	public JsonProblemRepresentation(int iterations, int bees, int normValue,
-			double[] distanceMatrix, int salesmen, double salesmanCost,
+			double[][] distanceMatrix, int salesmen, double salesmanCost,
 			double salesmanDistance, int neighbourhoodsFrequency,
-			int randomSolutions, int neighbourhoods, String tsplib) {
+			int randomSolutions, int neighbourhoods, String tsplib, int laps) {
 		super();
 		this.iterations = iterations;
 		this.bees = bees;
@@ -29,6 +30,7 @@ public class JsonProblemRepresentation {
 		this.randomSolutions = randomSolutions;
 		this.neighbourhoods = neighbourhoods;
 		this.tsplib = tsplib;
+		this.laps = laps;
 	}
 	
 	public int getIterations() {
@@ -49,10 +51,10 @@ public class JsonProblemRepresentation {
 	public void setNormValue(int normValue) {
 		this.normValue = normValue;
 	}
-	public double[] getDistanceMatrix() {
+	public double[][] getDistanceMatrix() {
 		return distanceMatrix;
 	}
-	public void setDistanceMatrix(double[] distanceMatrix) {
+	public void setDistanceMatrix(double[][] distanceMatrix) {
 		this.distanceMatrix = distanceMatrix;
 	}
 	public int getSalesmen() {
@@ -96,6 +98,14 @@ public class JsonProblemRepresentation {
 	}
 	public void setTsplib(String tsplib) {
 		this.tsplib = tsplib;
+	}
+
+	public int getLaps() {
+		return laps;
+	}
+
+	public void setLaps(int laps) {
+		this.laps = laps;
 	}
 
 }

@@ -183,7 +183,11 @@ public class MTSPProblem {
 		}
 	}
 
-	public void loadProblemDataFromJSON(String jsonData){
-		
+	public void loadProblemDataFromJSON(JsonProblemRepresentation json){
+		costMatrix = json.distanceMatrix;
+		maxSalesmanNumber = json.salesmen;
+		maxSalesmanRouteLength = json.salesmanDistance*1000; // meters to kilometers
+		salesmanDispatchCost = json.salesmanCost;
+		dimensions = costMatrix[0].length;		
 	}
 }
