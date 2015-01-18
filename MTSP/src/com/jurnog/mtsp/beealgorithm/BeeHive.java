@@ -51,8 +51,18 @@ public class BeeHive {
 		problem.loadProblemDataFromFile(path);
 	}
 	
-	public void problemFromJson(JsonProblemRepresentation json){
-		problem.loadProblemDataFromJSON(json);
+	
+	
+	public void problemFromJson(JsonProblemRepresentation json, boolean tsplib){
+		if(tsplib){
+			problem.loadProblemFromTSPLibString(json.getTsplib());
+			problem.setMaxSalesmanNumber(1);
+			problem.setSalesmanDispatchCost(0.0);
+			problem.setMaxSalesmanRouteLength(json.getSalesmanDistance());
+		} else {
+			problem.loadProblemDataFromJSON(json);
+		}
+		
 		scoutBeesNumber = json.getRandomSolutions();
 		eliteNeighbourhoodNumber = json.getNeighbourhoods();
 		beePerEliteNeighbourhood = json.getBees();

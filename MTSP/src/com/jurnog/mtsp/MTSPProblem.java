@@ -91,6 +91,16 @@ public class MTSPProblem {
 		} 
 	}
 	
+	public void loadProblemFromTSPLibString(String data){
+		Scanner scanner = new Scanner(data);
+		try {
+			parseTSPLibData(scanner);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
+		}
+		scanner.close();
+	}
+	
 
 
 	private void parseTSPLibData(Scanner scanner) throws InvalidInputException{

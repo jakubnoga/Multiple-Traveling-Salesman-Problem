@@ -1,16 +1,10 @@
 package com.jurnog.mtsp.servlets;
 
-import java.util.List;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,22 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.jurnog.mtsp.JsonProblemRepresentation;
-import com.jurnog.mtsp.MTSPProblem;
 import com.jurnog.mtsp.beealgorithm.BeeHive;
 import com.jurnog.mtsp.beealgorithm.Neighbourhood;
 import com.jurnog.mtsp.web.utilities.Result;
 
 /**
- * Servlet implementation class PointsFromMapServlet
+ * Servlet implementation class TsplibPointsServlet
  */
-@WebServlet("/mappoints/*")
-public class PointsFromMapServlet extends HttpServlet {
+@WebServlet("/tsplib/*")
+public class TsplibPointsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PointsFromMapServlet() {
+    public TsplibPointsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,8 +35,7 @@ public class PointsFromMapServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext sc = request.getServletContext();
-		
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -51,8 +43,9 @@ public class PointsFromMapServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String jsonString = request.getParameter("data");
-		JsonProblemRepresentation representation = new Gson().fromJson(jsonString, JsonProblemRepresentation.class);		
+		JsonProblemRepresentation representation = new Gson().fromJson(jsonString, JsonProblemRepresentation.class);
 		
+
 		int laps = representation.getLaps();
 		Result result = new Result();
 		
@@ -64,7 +57,7 @@ public class PointsFromMapServlet extends HttpServlet {
 		for(int lap = 0; lap < laps; lap++){
 			
 			BeeHive hive = new BeeHive();
-			hive.problemFromJson(representation,false);
+			hive.problemFromJson(representation,true);
 			
 			int setEliteNeighbourhoodsFrequency = representation.getNeighbourhoodsFrequency();
 			double initialNormValue = representation.getNormValue();
