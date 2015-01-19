@@ -1,20 +1,30 @@
-'use strict';
-angular
-  .module('MTSPApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
+angular.module('ngBoilerplate', [
     'uiGmapgoogle-maps',
     'ui.router',
+    'ngBoilerplate.home',
+    'ngBoilerplate.library',
+    'ngBoilerplate.result',
+    'templates-app',
+    'templates-common',
     'googlechart'
   ])
 
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+  $urlRouterProvider.otherwise( '/main' );
+})
+
+.run( function run () {
+})
+
+
 .constant('serverURL', {
-    'url': 'http://localhost:8080/MTSP_BACK_END/'
+    'url': ''
+})
+
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+  $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    $scope.pageTitle = 'MTSP' ;
+  });
 })
 
 .config(function ($provide) {
@@ -81,27 +91,6 @@ angular
   $httpProvider.defaults.transformRequest = [function(data) {
     return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
   }];
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-$urlRouterProvider.otherwise('/main');
-$stateProvider
-  .state('main', {
-    url: '/man',
-    templateUrl: 'views/main.html',
-    controller: 'MainCtrl',
-    controllerAs: 'mCtrl'
-  }).state('library', {
-    url: '/library',
-    templateUrl: 'views/library.html',
-    controller: 'LibraryCtrl',
-    controllerAs: 'mCtrl'
-  }).state('result', {
-    url: '/result',
-    templateUrl: 'views/result.html',
-    controller: 'ResultCtrl',
-    controllerAs: 'rCtrl'
-  });
 })
 
 .config(function(uiGmapGoogleMapApiProvider) {

@@ -10,7 +10,7 @@ angular.module('MTSPApp').service('MainService', function (
 		var url = '';
 		if(mode === 'map'){
 			url = 'mappoints';
-			data.tsplib = "null";
+			data.tsplib = 'null';
 		} else if (mode === 'tsplib') {
 			url = 'tsplib';
 			data.distanceMatrix = [[0]];

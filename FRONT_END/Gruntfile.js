@@ -18,11 +18,14 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: '../MTSP BACK_END/WebContent',
+    src: '/'
   };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+
 
     // Project settings
     yeoman: appConfig,
@@ -135,12 +138,15 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           dot: true,
-          src: [
-            '.tmp',
-            '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git{,*/}*'
-          ]
-        }]
+          src: ['<%= yeoman.dist %>/*',
+                '!<%= yeoman.dist %>/META-INF/**',
+                '!<%= yeoman.dist %>/WEB-INF/**',
+                '!<%= yeoman.dist %>/bower_components/**'
+              ]
+        }],        
+        options: {
+          force: true
+        }
       },
       server: '.tmp'
     },
@@ -254,15 +260,20 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+
+    uglify: {        
+      options: {
+        sourceMap: true,
+        sourceMappingURL: '<%= yeoman.src %>.map.js',
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
     // concat: {
     //   dist: {}
     // },

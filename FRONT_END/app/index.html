@@ -39,10 +39,8 @@
             <ul class="nav navbar-nav">
               <li ui-sref-active="active"><a ui-sref="main">Planowanie trasy</a></li>
               <li ui-sref-active="active"><a ui-sref="library">Biblioteka TSP</a></li>
+              <li ui-sref-active="active"><a ui-sref="result">Wyniki</a></li>
             </ul>
-            <!-- <ul class="nav navbar-nav navbar-right">
-              <li><a ui-sref="#">PRAWO</a></li>
-            </ul> -->
           </div>
         </div>
       </nav>
@@ -103,14 +101,17 @@
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main-controller.js"></script>
+        <script src="scripts/controllers/result-controller.js"></script>
         <script src="scripts/controllers/library-controller.js"></script>
         <script src="scripts/services/main-service.js"></script>
+
         <!-- endbuild -->
 
 </body>
