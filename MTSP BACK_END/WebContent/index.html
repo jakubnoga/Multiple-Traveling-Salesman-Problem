@@ -34,6 +34,7 @@
     <script type="text/javascript" src="src/app/app.js"></script>
     <script type="text/javascript" src="src/app/home/home.js"></script>
     <script type="text/javascript" src="src/app/library/library.js"></script>
+    <script type="text/javascript" src="src/app/modal/wait-modal.js"></script>
     <script type="text/javascript" src="src/app/result/result.js"></script>
     <script type="text/javascript" src="src/common/plusOne/plusOne.js"></script>
     <script type="text/javascript" src="templates-common.js"></script>
@@ -45,32 +46,40 @@
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">TRAVELER</a>
+    <div ng-show="wait" class="wait">
+      <div class="container">
+        <h1>Ładowanie wyników</h1>
+      </div>
+    </div>
+    <div ng-show="!wait">
+      <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">TRAVELER</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li ui-sref-active="active"><a ui-sref="home">Planowanie trasy</a></li>
+                <li ui-sref-active="active"><a ui-sref="library">Biblioteka TSP</a></li>
+              </ul>
+              <!-- <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="#">PRAWO</a></li>
+              </ul> -->
+            </div>
           </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li ui-sref-active="active"><a ui-sref="home">Planowanie trasy</a></li>
-              <li ui-sref-active="active"><a ui-sref="library">Biblioteka TSP</a></li>
-            </ul>
-            <!-- <ul class="nav navbar-nav navbar-right">
-              <li><a ui-sref="#">PRAWO</a></li>
-            </ul> -->
-          </div>
-        </div>
-      </nav>
-      <div class="view-container" ui-view></div>
+        </nav>
+        <div class="view-container" ui-view></div>
 
-    <div class="container" ui-view="main"></div>
+      <div class="container" ui-view="main"></div>
+    </div>
+
   </body>
 </html>

@@ -21,6 +21,26 @@ angular.module( 'ngBoilerplate.result', [
   if(_.isUndefined(data) || _.isNull(data)){
     $state.go('home');
   } else {
+    var average = function(array){
+      var sum = 0;
+      var k = 0;
+      _.forEach(array,function(item){
+        sum +=item;
+        k++;
+      });
+      return sum/k;
+    };
+
+    var findBestRoute = function(bestRoutes){
+      var temp = bestRoutes[0];
+      var index = 0;
+      for(var i;i<bestRoutes.length;i++){
+        if(bestRoutes[i]<temp){
+          index = i;
+        }
+      }
+      return index;
+    };
 
     uiGmapGoogleMapApi.then(function(maps) {
       ctrl.maps = maps;    
@@ -61,10 +81,22 @@ angular.module( 'ngBoilerplate.result', [
       cols.push({id: "pw" + cnt, label: "Powtorzenie " + cnt, type: "number"});
       cnt++;
     });
+    var bestRouteIndex = findBestRoute(bestRoutes);
+    var bestRoute = data.bestRoute[bestRouteIndex];
+    ctrl.bestRoute = bestRoute;
+    ctrl.maxTime = _.max(times);
+    ctrl.minTime = _.min(times);
+    ctrl.avgTime = average(times);
 
+    ctrl.maxRoute = _.max(bestRoutes);
+    ctrl.minRoute = _.min(bestRoutes);
+    ctrl.avgRoute = average(bestRoutes);
+    ctrl.laps = data.laps;
 
     if(MainService.data.mode === 'map'){
-      ctrl.mode = true;
+      ctrl.mode = true;    
+      ctrl.markers = bestRoute;
+      ctrl.polylines = []; 
       for(var l = 0; l<ctrl.markers.length;l++){
         var from,to;
         if(l < ctrl.markers.length-1){
@@ -105,45 +137,9 @@ angular.module( 'ngBoilerplate.result', [
     } else {
       ctrl.mode = false;
       ctrl.tsplib = MainService.data.tsplib;
+
     }
     
-    
-    var average = function(array){
-      var sum = 0;
-      var k = 0;
-      _.forEach(array,function(item){
-        sum +=item;
-        k++;
-      });
-      return sum/k;
-    };
-
-    var findBestRoute = function(bestRoutes){
-      var temp = bestRoutes[0];
-      var index = 0;
-      for(var i;i<bestRoutes.length;i++){
-        if(bestRoutes[i]<temp){
-          index = i;
-        }
-      }
-      return index;
-    };
-
-    var bestRouteIndex = findBestRoute(bestRoutes);
-    var bestRoute = data.bestRoute[bestRouteIndex];
-    ctrl.bestRoute = bestRoute;
-
-    ctrl.markers = bestRoute;
-
-    ctrl.maxTime = _.max(times);
-    ctrl.minTime = _.min(times);
-    ctrl.avgTime = average(times);
-
-    ctrl.maxRoute = _.max(bestRoutes);
-    ctrl.minRoute = _.min(bestRoutes);
-    ctrl.avgRoute = average(bestRoutes);
-    ctrl.laps = data.laps;
-    ctrl.polylines = []; 
 
     ctrl.chartObject.data = {
       "cols": cols,

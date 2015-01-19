@@ -1,4 +1,4 @@
-angular.module('templates-app', ['home/home.tpl.html', 'library/library.tpl.html', 'result/result.tpl.html']);
+angular.module('templates-app', ['home/home.tpl.html', 'library/library.tpl.html', 'modal/wait-modal.tpl.html', 'result/result.tpl.html']);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
@@ -474,6 +474,15 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "</div>");
 }]);
 
+angular.module("modal/wait-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("modal/wait-modal.tpl.html",
+    "<div class=\"modal-content\">\n" +
+    "    <div class=\"modal-body\">\n" +
+    "        <h1>Ładowanie wyników</h1>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
 angular.module("result/result.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("result/result.tpl.html",
     "<div class=\"container full-width-container full-height\">\n" +
@@ -525,9 +534,10 @@ angular.module("result/result.tpl.html", []).run(["$templateCache", function($te
     "        </div>\n" +
     "        <div class=\"form-group\" ng-if=\"!rCtrl.mode\">\n" +
     "          <label for=\"bestRoute\">Droga</label>\n" +
-    "          <span  id=\"bestRoute\" name=\"bestRoute\">\n" +
+    "          <div  id=\"bestRoute\" name=\"bestRoute\"\n" +
+    "                style=\"overflow:auto;max-width:200px;\">\n" +
     "            {{rCtrl.bestRoute}}\n" +
-    "          </span>\n" +
+    "          </div>\n" +
     "        </div>\n" +
     "      </form> \n" +
     "    </div> \n" +

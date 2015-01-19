@@ -112,7 +112,11 @@ angular.module( 'ngBoilerplate.home', [
     }
   };
 
-  var addRow = function(result){    
+  var addRow = function(result){
+    if(_.isNull(result)){
+      window.alert("zbyt duzo zapytan do mapy, zmniejsz liczbe punktow");
+      return;
+    }
     if(_.isEmpty(destinations)){
       for(var j = 0; j<result.destinationAddresses.length;j++){
         destinations[j] = {
@@ -143,7 +147,8 @@ angular.module( 'ngBoilerplate.home', [
 .service('MainService', function (
   $http,
   serverURL,
-  $state
+  $state,
+  $rootScope
 ) {
 
   var service = this;
@@ -174,10 +179,12 @@ angular.module( 'ngBoilerplate.home', [
       url = 'tsplib';
       data.distanceMatrix = [[0]];
       service.data.tsplib = data.tsplib;
+      $rootScope.$emit('WAIT',true);
     } else {
       console.log('Unknown mode. STOP');
       return;
     }
+    
     return $http({
       method:'POST',
       url: serverURL.url + url,
@@ -198,14 +205,14 @@ angular.module( 'ngBoilerplate.home', [
             }; 
           }
         });
-      }     
-      
-
+      } else {
+        $rootScope.$emit('WAIT',false);
+      }      
       service.data.received = resolve;
       $state.go('result');
     }).error(function(reason){
-      window.alert('BŁĄD, dane w konsoli');
-      console.log(reason);
+      $rootScope.$emit('WAIT',false);
+      window.alert('Blad serwera');
     });
   };
 

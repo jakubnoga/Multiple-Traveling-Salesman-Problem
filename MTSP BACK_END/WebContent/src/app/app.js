@@ -21,9 +21,12 @@ angular.module('ngBoilerplate', [
     'url': ''
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location,$rootScope ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     $scope.pageTitle = 'MTSP' ;
+  });
+  $rootScope.$on('WAIT', function (event, data) {
+    $scope.wait = data;
   });
 })
 
