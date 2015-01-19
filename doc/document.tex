@@ -5,6 +5,7 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{enumerate}
+\usepackage{graphicx}
 \numberwithin{equation}{subsection}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \lstset{
@@ -15,7 +16,6 @@
 }
 
 \begin{document}
-
 \title{Multiple Traveling Salesmen Problem}
 \author{Marcin Juraszek \\ Jakub Noga}
 \maketitle
@@ -145,24 +145,33 @@ public int[][] call() throws Exception {
 		Za s¹siedztwa elitarne uwa¿amy zbiór rozwi¹zañ (licznoœæ - $l$ tego zbioru
 		jest okreœlana przez u¿ytkownika), które charakteryzuj¹ siê najwy¿sz¹ wartoœci¹
 		funkcji celu. Przypisanie odbywa siê poprzez sortowanie malej¹ce listy
-		s¹siedztw zwyczajnych (losowo wybranych poprzez Scouting), a nastêpnie wybór pierwszych
-		$l$ obiektów z listy.
+		rozwi¹zñ losowych wybranych w pierwszym etapie dzia³ania algorytmu, a
+		nastêpnie wybór pierwszych $l$ obiektów z listy.
 		\subsubsection{Eksploracja s¹siedztw elitarnych}
 		Na tym etapie algorytm korzysta z postaci równowa¿nej do macierzy przejœæ - X,
 		czyli wektora przejœæ - r.
 		\newline
 		\newline
-		Eksploracja s¹siedztw elitarnych polega na
-		modyfikacji rozwi¹zañ na jeden z dwóch sposobów:
-		\begin{enumerate}[(a)]
-		  \item Permutowanie wektora przejœæ - losowa zmiana kolejnoœci na $n$
-		  kolejnych pozycjach wektora, liczba $n$ zmienia siê proporcjonalnie
-		  do liczby pozosta³ych iteracji w zakresie podanym przez u¿ytkownika.
-		  \item Losow¹ zmianê pozycji $m$ elementów wektora przejœæ poprzez kolejno
-		  usuniêcie i losowe umieszczenie ka¿dego z nich.
-		\end{enumerate}
+		Eksploracja s¹siedztw elitarnych polega na losowej zmianie kolejnoœci na $n$
+		kolejnych pozycjach wektora, liczba $n$ zmienia siê proporcjonalnie
+		do liczby pozosta³ych iteracji w nastêpuj¹cy sposób: 
+		\begin{equation} 
+			n = WartoscPoczatkowa *
+			\frac{LiczbaIteracji-AktualnaIteracja}{LiczbaIteracji}
+		\end{equation} 
+		$WartoscPoczatkowa$ - jest parametrem podawanym przez u¿ytkownika.
 		Ka¿de z s¹siedztw elitarnych eksplorowane jest przez $w$ pszczó³-robotnic -
 		liczba $w$ ustalana jest przez u¿ytkownika.
+		\newline
+		\newline
+		Przyk³ad:
+		\newline
+		Dla s¹siedztwa elitarnego o reprezentacji w postaci wektora\newline $r_{0} =
+		[0,9,8,7,6,0,1,3,2,0,4,5,0]$, oraz dla $n=5$, przyk³adowym rozwi¹zaniem
+		zwróconym przez funkcjê eksploracji s¹siedztw elitarnych mo¿e byæ $r_{1} =
+		[0,9,8,7,0,6,2,1,3,0,4,5,0]$. Permutacja mia³a miejsce od 5. do 10. miejsca w
+		wektorze.
+		
 		\subsubsection{Iteracje}
 		Iloœæ iteracji ustalana jest przez u¿ytkownika. Podczas ka¿dej itaracji
 		powstaje $l \cdot w$ s¹siedztw dlatego wysoce niewydajnym, pod wzglêdem
@@ -172,15 +181,25 @@ public int[][] call() throws Exception {
 		standardow¹ eksploracjê.
 		\subsubsection{Zbiór parametrów algorytmu}
 		\begin{itemize}
-		  \item s - liczba pszczó³-zwiadowców
-		  \item l - liczba s¹siedztw elitarnych
+		  \item s - liczba pszczó³-zwiadowców - oznacza iloœæ pocz¹tkowych rozwi¹zañ
+		  losowych
+		  \item l - liczba s¹siedztw elitarnych - oznacza iloœæ modyfikowanych
+		  rozwi¹zañ w czasie ka¿dej iteracji, w celu polepszenia wartoœci funkcji celu
 		  \item w - liczba pszczó³-robotnic przypadaj¹ca na jedno s¹siedztwo elitarne
-		  \item n - iloœæ elemetów wektora przejœæ, które bêd¹ permutowane (wielkoœæ
-		  s¹siedztwa)
-		  \item m - iloœæ elemetów wektora przejœæ, którym pozycja zostanie zmieniona
-		  (wielkoœæ s¹siedztwa)
+		  - oznacza iloœæ nowych rozwi¹zañ powsta³ych z ka¿dego s¹siedztwa elitarnego
+		  \item n - iloœæ elementów wektora przejœæ, które bêd¹ permutowane (wielkoœæ
+		  s¹siedztwa) - mówi w jakim stopniu nowe rozwi¹zanie bêdzie ró¿ni³o siê od
+		  s¹siedztwa elitarnego, z którego siê wywodzi.
 		  \item i - liczba iteracji, po których s¹siedztwa elitarne zostan¹ przypisane
-		  na now
+		  na nowo - mówi o tym jak czêsto rozwi¹zania, które powsta³y poprzez
+		  permutacjê s¹siedztw elitarnych i poprawi³y wartoœæ funkcji celu, bêd¹
+		  przejmowa³y rolê s¹siedztw elitarnych. 
 		  \item t - iloœæ iteracji algorytmu
 		\end{itemize}
+	
+	\section{Interfejs u¿ytkownika}
+	\subsection{Aplikacja Webowa}
+	\subsubsection{Wybór miejsc na mapie}
+	\subsubsection{Instancja testowa TSPLib}
+	
 \end{document}
