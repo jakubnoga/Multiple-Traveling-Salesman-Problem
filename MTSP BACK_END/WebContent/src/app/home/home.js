@@ -1,7 +1,7 @@
 angular.module( 'ngBoilerplate.home', [
   'ui.router'
 ])
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider.state( 'home', {
     url: '/home',
     views: {
@@ -12,8 +12,8 @@ angular.module( 'ngBoilerplate.home', [
       }
     }
   });
-})
-.controller('HomeCtrl', function HomeController (
+}])
+.controller('HomeCtrl', ["uiGmapGoogleMapApi", "$scope", "MainService", function HomeController (
   uiGmapGoogleMapApi,
   $scope,
   // $q
@@ -81,7 +81,7 @@ angular.module( 'ngBoilerplate.home', [
   ctrl.prepareData = function(form, credentials){
     if (form.$valid) {
       if(ctrl.markers.length === 0){
-        window.alert('Nie wybrano żadnych punktów na mapie');
+        window.alert('Nie wybrano zadnych punktow na mapie');
       } else {
         ctrl.credentials = credentials;
         distanceMatrix = [];
@@ -143,8 +143,8 @@ angular.module( 'ngBoilerplate.home', [
     MainService.sendData(ctrl.credentials,'map',map);
   };
 
-})
-.service('MainService', function (
+}])
+.service('MainService', ["$http", "serverURL", "$state", "$rootScope", function (
   $http,
   serverURL,
   $state,
@@ -216,4 +216,4 @@ angular.module( 'ngBoilerplate.home', [
     });
   };
 
-});
+}]);

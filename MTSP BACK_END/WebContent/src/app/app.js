@@ -9,9 +9,9 @@ angular.module('ngBoilerplate', [
     'googlechart'
   ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/main' );
-})
+.config( ["$stateProvider", "$urlRouterProvider", function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+  $urlRouterProvider.otherwise( '/home' );
+}])
 
 .run( function run () {
 })
@@ -21,17 +21,17 @@ angular.module('ngBoilerplate', [
     'url': ''
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location,$rootScope ) {
+.controller( 'AppCtrl', ["$scope", "$location", "$rootScope", function AppCtrl ( $scope, $location,$rootScope ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     $scope.pageTitle = 'MTSP' ;
   });
   $rootScope.$on('WAIT', function (event, data) {
     $scope.wait = data;
   });
-})
+}])
 
-.config(function ($provide) {
-  $provide.decorator('$q', function ($delegate) {
+.config(["$provide", function ($provide) {
+  $provide.decorator('$q', ["$delegate", function ($delegate) {
     var defer = $delegate.defer;
     $delegate.defer = function () {
       var deferred = defer();
@@ -46,10 +46,10 @@ angular.module('ngBoilerplate', [
       return deferred;
     };
     return $delegate;
-  });
-})
+  }]);
+}])
 
-.config(function($httpProvider) {
+.config(["$httpProvider", function($httpProvider) {
   // Use x-www-form-urlencoded Content-Type
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 
@@ -94,12 +94,12 @@ angular.module('ngBoilerplate', [
   $httpProvider.defaults.transformRequest = [function(data) {
     return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
   }];
-})
+}])
 
-.config(function(uiGmapGoogleMapApiProvider) {
+.config(["uiGmapGoogleMapApiProvider", function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDr7-TrRbKj1aHw7BeUhsI_6mGNTLFH0_o',
         v: '3.17',
         libraries: 'geometry,drawing'
     });
-});
+}]);

@@ -1,7 +1,7 @@
 angular.module( 'ngBoilerplate.library', [
   'ui.router'
 ])
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider.state( 'library', {
     url: '/library',
     views: {
@@ -12,8 +12,8 @@ angular.module( 'ngBoilerplate.library', [
       }
     }
   });
-})
-.controller('LibraryCtrl', function LibraryController (
+}])
+.controller('LibraryCtrl', ["MainService", function LibraryController (
   MainService
   ) {
   var ctrl = this;
@@ -44,4 +44,4 @@ angular.module( 'ngBoilerplate.library', [
   };
 
 
-});
+}]);

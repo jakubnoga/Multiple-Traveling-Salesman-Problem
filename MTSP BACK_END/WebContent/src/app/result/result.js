@@ -1,7 +1,7 @@
 angular.module( 'ngBoilerplate.result', [
   'ui.router'
 ])
-.config(function config( $stateProvider ) {
+.config(["$stateProvider", function config( $stateProvider ) {
   $stateProvider.state( 'result', {
     url: '/result',
     views: {
@@ -12,8 +12,8 @@ angular.module( 'ngBoilerplate.result', [
       }
     }
   });
-})
-.controller('ResultCtrl', function ResultController (
+}])
+.controller('ResultCtrl', ["MainService", "$state", "uiGmapGoogleMapApi", function ResultController (
   MainService,$state,uiGmapGoogleMapApi
   ) {
   var ctrl = this;
@@ -154,4 +154,4 @@ angular.module( 'ngBoilerplate.result', [
 
   }
 
-});
+}]);

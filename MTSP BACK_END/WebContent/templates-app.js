@@ -1,4 +1,4 @@
-angular.module('templates-app', ['home/home.tpl.html', 'library/library.tpl.html', 'modal/wait-modal.tpl.html', 'result/result.tpl.html']);
+angular.module('templates-app', ['home/home.tpl.html', 'library/library.tpl.html', 'result/result.tpl.html']);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
@@ -9,11 +9,11 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "      <form name=\"mainForm\" novalidate style=\"max-height:592px; overflow:auto\">\n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"salesmanInput\">Maksymalna ilość kurierów</label>\n" +
+    "          <label for=\"salesmanInput\">Maksymalna ilosc kurierow</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"salesmanInput\" \n" +
-    "            placeholder=\"Proszę podać maksymalną ilość\"\n" +
+    "            placeholder=\"Prosze podac maksymalna ilosc\"\n" +
     "            ng-required=\"true\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.salesmanInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -22,10 +22,10 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            min=\"0\"\n" +
     "            ng-model=\"mCtrl.credentials.salesmen\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.salesmanInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
@@ -34,7 +34,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"salesmanDistanceInput\" \n" +
-    "            placeholder=\"Proszę podać maksymalną drogę\"\n" +
+    "            placeholder=\"Prosze podac maksymalna droge\"\n" +
     "            ng-required=\"true\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.salesmanDistanceInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -43,19 +43,19 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            min=\"0\"\n" +
     "            ng-model=\"mCtrl.credentials.salesmanDistance\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.salesmanDistanceInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>         \n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"salesmanCostInput\">Koszt wysłania jednego kuriera</label>\n" +
+    "          <label for=\"salesmanCostInput\">Koszt wyslania jednego kuriera</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"salesmanCostInput\" \n" +
-    "            placeholder=\"Proszę podać koszt wysłania\"\n" +
+    "            placeholder=\"Prosze podac koszt wysLania\"\n" +
     "            ng-required=\"true\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.salesmanCostInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -64,19 +64,19 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            min=\"0\"\n" +
     "            ng-model=\"mCtrl.credentials.salesmanCost\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.salesmanCostInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>  \n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"neigbourhoods\">Ilość sąsiedztw</label>\n" +
+    "          <label for=\"neigbourhoods\">Ilosc sasiedztw</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"neigbourhoodsInput\" \n" +
-    "            placeholder=\"Proszę podać ilość sąsiedztw\"\n" +
+    "            placeholder=\"Prosze podac ilosc sasiedztw\"\n" +
     "            ng-required=\"true\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.neigbourhoodsInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -85,19 +85,19 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            min=\"0\"\n" +
     "            ng-model=\"mCtrl.credentials.neighbourhoods\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.neigbourhoodsInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div> \n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"neighbourhoodsFrquencyInput\">Częstotliwość zmiany sąsiedztw</label>\n" +
+    "          <label for=\"neighbourhoodsFrquencyInput\">Czestotliwosc zmiany sasiedztw</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"neighbourhoodsFrquencyInput\" \n" +
-    "            placeholder=\"Proszę podać częstotliwość zmiany sąsiedztw\"\n" +
+    "            placeholder=\"Prosze podac czestotliwosc zmiany sasiedztw\"\n" +
     "            ng-required=\"true\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.neighbourhoodsFrquencyInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -106,19 +106,19 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            min=\"0\"\n" +
     "            ng-model=\"mCtrl.credentials.neighbourhoodsFrequency\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.neighbourhoodsFrquencyInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"randomSolutionInput\">Ilość rozwiązań początkowych</label>\n" +
+    "          <label for=\"randomSolutionInput\">Ilosc rozwiazan poczatkowych</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"randomSolutionInput\" \n" +
-    "            placeholder=\"Proszę podać ilość rozwiązań początkowych\"\n" +
+    "            placeholder=\"Prosze podac ilosc rozwiazan poczatkowych\"\n" +
     "            ng-required=\"true\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.randomSolutionInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -127,20 +127,20 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            ng-maxlength=\"6\"\n" +
     "            ng-model=\"mCtrl.credentials.randomSolutions\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.randomSolutionInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div> \n" +
     "\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"beeInput\">Ilość pszczół na sąsiedztwo</label>\n" +
+    "          <label for=\"beeInput\">Ilosc pszczol na sasiedztwo</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"beeInput\" \n" +
     "            name=\"beeInput\"\n" +
-    "            placeholder=\"Proszę podać ilość pszczół\"\n" +
+    "            placeholder=\"Prosze podac ilosc pszczoL\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.beeInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
     "            ng-maxlength=\"6\"\n" +
@@ -148,18 +148,18 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            ng-required=\"true\"\n" +
     "            ng-model=\"mCtrl.credentials.bees\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.beeInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.beeInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.beeInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.beeInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.beeInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.beeInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.beeInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    <div class=\"form-group\">\n" +
-    "          <label for=\"normInput\">Początkowy rozmiar sąsiedztwa</label>\n" +
+    "          <label for=\"normInput\">Poczatkowy rozmiar sasiedztwa</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"normInput\" \n" +
-    "            placeholder=\"Proszę podać rozmiar sąsiedztwa\"\n" +
+    "            placeholder=\"Prosze podac rozmiar sasiedztwa\"\n" +
     "            name=\"normInput\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.normInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -168,19 +168,19 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            ng-required=\"true\"\n" +
     "            ng-model=\"mCtrl.credentials.normValue\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.normInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    \n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"iterationInput\">Ilość iteracji</label>\n" +
+    "          <label for=\"iterationInput\">Ilosc iteracji</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"iterationInput\" \n" +
-    "            placeholder=\"Proszę podać ilość iteracji\"\n" +
+    "            placeholder=\"Prosze podac ilosc iteracji\"\n" +
     "            name=\"iterationInput\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -189,18 +189,18 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            ng-required=\"true\"\n" +
     "            ng-model=\"mCtrl.credentials.iterations\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.iterationInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    <div class=\"form-group\">\n" +
-    "            <label for=\"lapsInput\">Ilość powtórzeń algorytmu</label>\n" +
+    "            <label for=\"lapsInput\">Ilosc powtorzen algorytmu</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"lapsInput\" \n" +
-    "              placeholder=\"Proszę podać ilość powtórzeń algorytmu\"\n" +
+    "              placeholder=\"Prosze podac ilosc powtorzen algorytmu\"\n" +
     "              name=\"lapsInput\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.lapsInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -209,10 +209,10 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "              ng-required=\"true\"\n" +
     "              ng-model=\"mCtrl.credentials.laps\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.lapsInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>\n" +
     "        </div>    \n" +
@@ -237,7 +237,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "        class=\"btn btn-default pull-right\"\n" +
     "        style=\"margin-top: 30px;\n" +
     "              margin-right: 10px;\">\n" +
-    "        Zatwierdź\n" +
+    "        Zatwierdz\n" +
     "    </button> \n" +
     "  </div>\n" +
     "</div>");
@@ -257,7 +257,7 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"salesmanDistanceInput\" \n" +
-    "              placeholder=\"Proszę podać maksymalną drogę\"\n" +
+    "              placeholder=\"Prosze podac maksymalna droge\"\n" +
     "              ng-required=\"true\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.salesmanDistanceInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -266,19 +266,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              min=\"0\"\n" +
     "              ng-model=\"mCtrl.credentials.salesmanDistance\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.salesmanDistanceInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanDistanceInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>         \n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
-    "            <label for=\"salesmanCostInput\">Koszt wysłania jednego kuriera</label>\n" +
+    "            <label for=\"salesmanCostInput\">Koszt wyslania jednego kuriera</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"salesmanCostInput\" \n" +
-    "              placeholder=\"Proszę podać koszt wysłania\"\n" +
+    "              placeholder=\"Prosze podac koszt wysLania\"\n" +
     "              ng-required=\"true\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.salesmanCostInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -287,19 +287,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              min=\"0\"\n" +
     "              ng-model=\"mCtrl.credentials.salesmanCost\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.salesmanCostInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.salesmanCostInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>  \n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
-    "            <label for=\"neigbourhoods\">Ilość sąsiedztw</label>\n" +
+    "            <label for=\"neigbourhoods\">Ilosc sasiedztw</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"neigbourhoodsInput\" \n" +
-    "              placeholder=\"Proszę podać ilość sąsiedztw\"\n" +
+    "              placeholder=\"Prosze podac ilosc sasiedztw\"\n" +
     "              ng-required=\"true\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.neigbourhoodsInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -308,19 +308,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              min=\"0\"\n" +
     "              ng-model=\"mCtrl.credentials.neighbourhoods\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.neigbourhoodsInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neigbourhoodsInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div> \n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
-    "            <label for=\"neighbourhoodsFrquencyInput\">Częstotliwość zmiany sąsiedztw</label>\n" +
+    "            <label for=\"neighbourhoodsFrquencyInput\">Czestotliwosc zmiany sasiedztw</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"neighbourhoodsFrquencyInput\" \n" +
-    "              placeholder=\"Proszę podać częstotliwość zmiany sąsiedztw\"\n" +
+    "              placeholder=\"Prosze podac czestotliwosc zmiany sasiedztw\"\n" +
     "              ng-required=\"true\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.neighbourhoodsFrquencyInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -329,19 +329,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              min=\"0\"\n" +
     "              ng-model=\"mCtrl.credentials.neighbourhoodsFrequency\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.neighbourhoodsFrquencyInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.neighbourhoodsFrquencyInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>\n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
-    "            <label for=\"randomSolutionInput\">Ilość rozwiązań początkowych</label>\n" +
+    "            <label for=\"randomSolutionInput\">Ilosc rozwiazan poczatkowych</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"randomSolutionInput\" \n" +
-    "              placeholder=\"Proszę podać ilość rozwiązań początkowych\"\n" +
+    "              placeholder=\"Prosze podac ilosc rozwiazan poczatkowych\"\n" +
     "              ng-required=\"true\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.randomSolutionInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -350,20 +350,20 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              ng-maxlength=\"6\"\n" +
     "              ng-model=\"mCtrl.credentials.randomSolutions\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.randomSolutionInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.randomSolutionInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div> \n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
-    "            <label for=\"beeInput\">Ilość pszczół na sąsiedztwo</label>\n" +
+    "            <label for=\"beeInput\">Ilosc pszczol na sasiedztwo</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"beeInput\" \n" +
     "              name=\"beeInput\"\n" +
-    "              placeholder=\"Proszę podać ilość pszczół\"\n" +
+    "              placeholder=\"Prosze podac ilosc pszczoL\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.beeInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
     "              ng-maxlength=\"6\"\n" +
@@ -371,19 +371,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              ng-required=\"true\"\n" +
     "              ng-model=\"mCtrl.credentials.bees\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.beeInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.beeInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>\n" +
     "      \n" +
     "      <div class=\"form-group\">\n" +
-    "          <label for=\"normInput\">Początkowy rozmiar sąsiedztwa</label>\n" +
+    "          <label for=\"normInput\">Poczatkowy rozmiar sasiedztwa</label>\n" +
     "          <input type=\"number\" \n" +
     "            class=\"form-control\" \n" +
     "            id=\"normInput\" \n" +
-    "            placeholder=\"Proszę podać rozmiar sąsiedztwa\"\n" +
+    "            placeholder=\"Prosze podac rozmiar sasiedztwa\"\n" +
     "            name=\"normInput\"\n" +
     "            ng-class=\"{invalid: mainForm.submitted && mainForm.normInput.$invalid}\"\n" +
     "            ng-minlength=\"1\"\n" +
@@ -392,19 +392,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "            ng-required=\"true\"\n" +
     "            ng-model=\"mCtrl.credentials.normValue\">\n" +
     "            <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.normInput.$invalid\">\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "              <div class=\"error\" ng-show=\"mainForm.normInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "            </div>\n" +
     "        </div> \n" +
     "      \n" +
     "          <div class=\"form-group\">\n" +
-    "            <label for=\"iterationInput\">Ilość iteracji</label>\n" +
+    "            <label for=\"iterationInput\">Ilosc iteracji</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"iterationInput\" \n" +
-    "              placeholder=\"Proszę podać ilość iteracji\"\n" +
+    "              placeholder=\"Prosze podac ilosc iteracji\"\n" +
     "              name=\"iterationInput\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -413,19 +413,19 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              ng-required=\"true\"\n" +
     "              ng-model=\"mCtrl.credentials.iterations\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.iterationInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.iterationInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>\n" +
     "\n" +
     "    <div class=\"form-group\">\n" +
-    "            <label for=\"lapsInput\">Ilość powtórzeń algorytmu</label>\n" +
+    "            <label for=\"lapsInput\">Ilosc powtorzen algorytmu</label>\n" +
     "            <input type=\"number\" \n" +
     "              class=\"form-control\" \n" +
     "              id=\"lapsInput\" \n" +
-    "              placeholder=\"Proszę podać ilość powtórzeń algorytmu\"\n" +
+    "              placeholder=\"Prosze podac ilosc powtorzen algorytmu\"\n" +
     "              name=\"lapsInput\"\n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.lapsInput.$invalid}\"\n" +
     "              ng-minlength=\"1\"\n" +
@@ -434,10 +434,10 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              ng-required=\"true\"\n" +
     "              ng-model=\"mCtrl.credentials.laps\">\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.lapsInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.lapsInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "          </div>\n" +
     "        </div>\n" +
@@ -446,7 +446,7 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "      <div class=\"col-md-6 full-height\">\n" +
     "        <div class=\"form-group\">\n" +
     "            <label for=\"testInstanceInput\">Instancja testowa</label>\n" +
-    "            <textarea placeholder=\"Proszę wkleić tutaj zawartość instancji testowej\"\n" +
+    "            <textarea placeholder=\"Prosze wkleic tutaj zawartosc instancji testowej\"\n" +
     "              id=\"testInstanceInput\"\n" +
     "              class=\"form-control\"                \n" +
     "              ng-class=\"{invalid: mainForm.submitted && mainForm.iterationInput.$invalid}\"\n" +
@@ -456,10 +456,10 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "              ng-model=\"mCtrl.credentials.tsplib\">\n" +
     "            </textarea>\n" +
     "              <div class=\"error-container\" ng-show=\"mainForm.submitted && mainForm.testInstanceInput.$invalid\">\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.required\">Proszę wypełnić pole</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.maxlength\">Proszę wpisać mniej niż 6 znaków</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.number\">Proszę wpisać liczbę</div>\n" +
-    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.min\">Proszę wpisać dodatnią liczbę</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.required\">Prosze wypeLnic pole</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.maxlength\">Prosze wpisac mniej niz 6 znakow</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.number\">Prosze wpisac liczbe</div>\n" +
+    "                <div class=\"error\" ng-show=\"mainForm.testInstanceInput.$error.min\">Prosze wpisac dodatnia liczbe</div>\n" +
     "              </div>\n" +
     "        </div>\n" +
     "      </div>\n" +
@@ -468,18 +468,9 @@ angular.module("library/library.tpl.html", []).run(["$templateCache", function($
     "          ng-click=\"mCtrl.prepareData(mainForm, mCtrl.credentials)\" \n" +
     "          class=\"btn btn-default pull-right\"\n" +
     "          style=\"margin-right: 10px\">\n" +
-    "          Zatwierdź\n" +
+    "          Zatwierdz\n" +
     "    </button> \n" +
     "  </div>\n" +
-    "</div>");
-}]);
-
-angular.module("modal/wait-modal.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("modal/wait-modal.tpl.html",
-    "<div class=\"modal-content\">\n" +
-    "    <div class=\"modal-body\">\n" +
-    "        <h1>Ładowanie wyników</h1>\n" +
-    "    </div>\n" +
     "</div>");
 }]);
 
@@ -503,7 +494,7 @@ angular.module("result/result.tpl.html", []).run(["$templateCache", function($te
     "          </span>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"avgTime\">Średni czas wykonania</label>\n" +
+    "          <label for=\"avgTime\">sredni czas wykonania</label>\n" +
     "          <span  id=\"avgTime\" name=\"avgTime\">\n" +
     "            {{rCtrl.avgTime}}\n" +
     "          </span>\n" +
@@ -521,13 +512,13 @@ angular.module("result/result.tpl.html", []).run(["$templateCache", function($te
     "          </span>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"avgRoute\">Średnia droga</label>\n" +
+    "          <label for=\"avgRoute\">srednia droga</label>\n" +
     "          <span  id=\"avgRoute\" name=\"avgRoute\">\n" +
     "            {{rCtrl.avgRoute}}\n" +
     "          </span>\n" +
     "        </div>\n" +
     "        <div class=\"form-group\">\n" +
-    "          <label for=\"laps\">Ilość powtórzeń algorytmu</label>\n" +
+    "          <label for=\"laps\">Ilosc powtorzen algorytmu</label>\n" +
     "          <span  id=\"laps\" name=\"laps\">\n" +
     "            {{rCtrl.laps}}\n" +
     "          </span>\n" +
