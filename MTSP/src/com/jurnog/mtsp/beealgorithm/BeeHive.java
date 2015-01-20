@@ -212,6 +212,7 @@ public class BeeHive {
 			if(!newHoods.isEmpty()){
 				neighbourhoods = new HashMap<Neighbourhood, Double>();
 				neighbourhoods.putAll(newHoods);
+				neighbourhoods.putAll(eliteNeighbourhoods);
 			}
 		} catch (InterruptedException | ExecutionException e1) {
 			close();

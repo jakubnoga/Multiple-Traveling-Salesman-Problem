@@ -201,5 +201,46 @@ public int[][] call() throws Exception {
 	\subsection{Aplikacja Webowa}
 	\subsubsection{Wybór miejsc na mapie}
 	\subsubsection{Instancja testowa TSPLib}
+	\section{Testy}
+	\subsection{TSPLib Eil51}
+	Eil51 jest instancj¹ testow¹ dla algorytmów rozwi¹zuj¹cych problem
+	komiwoja¿era. Aby test naszego algorytmu by³ miarodajny na³o¿yliœmy
+	ograniczenie wykorzystania maksymalnie jednego komiwoja¿era. D³ugoœæ optymalnej
+	drogi wynosi 426 jednostek.
+	\newline
+	Dla ma³ej iloœci iteracji (1000) i tym samym krótkich czasów wykonania
+	algorytmu (rzêdu 1 minuty) cie¿ko dobraæ parametry, tak aby wyniki by³y
+	zadowalaj¹ce.
+	\newline
+	Poni¿ej prezentujemy funkcjê celu dla:
+		\begin{itemize}
+		  \item 1000 iteracji
+		  \item 20 s¹siedztw elitarnych
+		  \item Pocz¹tkowej wielkoœci s¹siedztwa - 25
+		  \item Zmiany s¹siedztw co 5 iteracji
+		  \item Ka¿dego s¹siedztwa elitarnego eksplorowanego przez 20 pszczó³
+		  \item 10000 losowych rozwi¹zañ pocz¹tkowych
+		\end{itemize}
+		Algorytm znalaz³ drogê o d³ugoœci 899 jednostek.
+		\newline
+		\includegraphics{scr1.jpg}
+		\newline
+		\newline
+	Jeœli jednak przeznaczymy na poszukiwanie odpowiednio wiêcej czasu i zasobów
+	komputera mo¿emy zbli¿yæ siê do optimum. Poni¿ej prezentujemy wynik poszukiwañ
+	trwaj¹cych 13 minut, o nastêpuj¹cych parametrach:
+		\begin{itemize}
+		  \item 10000 iteracji
+		  \item 50 s¹siedztw elitarnych
+		  \item Pocz¹tkowej wielkoœci s¹siedztwa - 25
+		  \item Zmiany s¹siedztw po ka¿dej iteracji
+		  \item Ka¿dego s¹siedztwa elitarnego eksplorowanego przez 25 pszczó³
+		  \item 20000 losowych rozwi¹zañ pocz¹tkowych
+		\end{itemize}
+	Algorytm znalaz³ drogê o d³ugoœci 628 jednostek.
+		\newline
+		\includegraphics{scr2.jpg}
+		\newline
+		\newline
 	
 \end{document}
