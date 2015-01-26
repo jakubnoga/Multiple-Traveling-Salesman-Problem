@@ -200,7 +200,29 @@ public int[][] call() throws Exception {
 	\section{Interfejs u¿ytkownika}
 	\subsection{Aplikacja Webowa}
 	\subsubsection{Wybór miejsc na mapie}
+	Jedn¹ z funkcjonalnoœci naszego systemu jest mo¿liwoœæ wyboru dowolnych
+	punktów na mapie, a nastêpnie poszukiwanie optymalnej drogi wœród nich. Poni¿ej
+	prezentujemy tê funkcjonalnoœæ.\newline
+	\newline
+	\includegraphics[width=\textwidth]{scr3.jpg}
+	Wyniki dzia³ania algorytmu prezentowane s¹ na mapie oraz na wykresie.
+	\newline
+	\newline
+	\includegraphics[width=\textwidth]{scr5.jpg}
+	\includegraphics[width=\textwidth]{scr6.jpg}
 	\subsubsection{Instancja testowa TSPLib}
+	System umo¿liwia równie¿ rozwi¹zanie problemu komiwoja¿era dla instancji
+	testowej z biblioteki TSPLib. Interfejs u¿ytkownika jest zbli¿ony do tego w
+	przypadku wyboru punktów z mapy.
+	\newline
+	\newline
+	\includegraphics[width=\textwidth]{scr7.jpg}
+	Prezentacja wyników wygl¹da nastêpuj¹co:
+	\newline
+	\newline
+	\includegraphics[width=\textwidth]{scr8.jpg}	
+	\includegraphics[width=\textwidth]{scr9.jpg}
+	
 	\section{Testy}
 	\subsection{TSPLib Eil51}
 	Eil51 jest instancj¹ testow¹ dla algorytmów rozwi¹zuj¹cych problem
@@ -209,7 +231,7 @@ public int[][] call() throws Exception {
 	drogi wynosi 426 jednostek.
 	\newline
 	Dla ma³ej iloœci iteracji (1000) i tym samym krótkich czasów wykonania
-	algorytmu (rzêdu 1 minuty) cie¿ko dobraæ parametry, tak aby wyniki by³y
+	algorytmu (rzêdu 1 minuty) ciê¿ko dobraæ parametry, tak aby wyniki by³y
 	zadowalaj¹ce.
 	\newline
 	Poni¿ej prezentujemy funkcjê celu dla:
@@ -242,5 +264,40 @@ public int[][] call() throws Exception {
 		\includegraphics{scr2.jpg}
 		\newline
 		\newline
+	\section{Wnioski}
+	\subsection{Dobór parametrów}
+		Pierwsze testy ujawni³y, i¿ najlepsze wyniki daje zmienna wielkoœæ s¹siedztwa.
+		Doszliœmy do wniosku, ¿e powinna ona maleæ, liniowo, wraz ze postêpowaniem
+		algorytmu. Pozwoli³o to unikn¹æ radykalnych zmian pod koniec pracy algorytmu i
+		tym samym poprawi³o jego skutecznoœæ. Zmiany ka¿dego z pozosta³ych parametrów
+		maj¹ podobny wp³yw na algorytm - polepszaj¹ znajdywan¹ funkcjê celu, jednak¿e
+		wyd³u¿aj¹ czas pracy algorytmu.
+	\subsection{Podsumowanie}
+		Po przetestowaniu algorytmu oraz porównaniu wyników z innymi algorytmami - na
+		przyk³ad algorytmem karalucha - doszliœmy do wniosku, i¿ algorytm pszczeli nie
+		jest optymalnym do rozwi¹zywania tego typu problemu. Konsumpcja mocy
+		obliczeniowej komputera nie jest proporcjonalna do osi¹ganych wyników, a nawet
+		po d³ugim, nawet 15-minutowym, oczekiwaniu nie ma gwarancji osi¹gniêcia
+		globalnego optimum.
+	\section{Dodatek}
+	\subsection{Instrukcja uruchomienia aplikacji w systemie operacyjnym Windows}
+	\begin{enumerate}
+	\item Nale¿y skopiowaæ katalog `Tomcat` w miejsce na dysku, do którego prowadzi
+	relatywnie krótka œcie¿ka - Java nie lubi d³ugich œcie¿ek. Sugerujê katalog
+	g³ówny dysku - C:\textbackslash{}Tomcat.
+	\item Nastêpnie w pliku `setenv.bat`, przy po pomocy np. notatnika, nale¿y
+	zmieniæ podane œcie¿ki tak by prowadzi³y do katalogu instalacyjnego Java'y.
+	Wystarczy zmieniæ tylko pocz¹tki œcie¿ek, tj. c:\textbackslash{}java1.7.0 gdy¿
+	dalsze czêœci na pewno s¹ takie same.
+	\item Nastêpnie uruchomiæ skrypt `startup.bat`, pojawi siê okno konsoli,
+	którego nie nale¿y zamykaæ rêcznie, do wy³¹czania serwera s³u¿y skrypt
+	`shutdown.bat`.
+	\item Aby skorzystaæ z aplikacji wystarczy teraz udaæ siê pod adres:
+	\newline
+	http://localhost:14041//mtsp\_back\_end/index.html
+	\end{enumerate}
+	
+	Uwaga: Do poprawnego dzia³ania aplikacji wymagane jest po³¹czenie z Internetem.
+	Aplikacja korzysta z bibliotek Google.
 	
 \end{document}
